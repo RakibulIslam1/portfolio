@@ -47,7 +47,7 @@ The hero counters show the owner's supplied 20+ projects, 25+ national wins, 7 W
 
 ## Adding projects
 
-The owner requested this page structure on 2026-10-15. The homepage shows one full-width capsule per selected project, with circular images alternating left/right on desktop and above centered copy on phones. See all projects opens `/projects/`, a block grid of every listed project. Clicking either a homepage capsule or a collection card opens `/projects/<slug>/`. Every detail page has a Back to all projects button, plus links to the homepage sections.
+The owner requested this page structure on 2026-10-15. The homepage shows one compact capsule per selected project, centered within a 1120px maximum width, with circular images alternating left/right on desktop and above centered copy on phones. The image diameter and capsule corner radius share one size variable so their curves match; desktop circles scale from 128–176px, phone circles use 128px (112px on narrow phones). See all projects opens `/projects/`, a block grid of every listed project. Clicking either a homepage capsule or a collection card opens `/projects/<slug>/`. Every detail page has a Back to all projects button, plus links to the homepage sections.
 
 All project content belongs in the `projects` array in `public/content.js`. Three clearly labelled preview entries currently demonstrate the layout without claiming real project details or assigning existing animation renders to unnamed projects. As soon as a real entry is added, preview entries disappear from the homepage, collection, and generated pages. The hero count excludes previews.
 
