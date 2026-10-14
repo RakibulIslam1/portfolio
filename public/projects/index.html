@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Explore Rakibul's project collection.">
+  <title>Projects — Rakibul</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../projects.css">
+  <script type="module" src="../project-pages.js"></script>
+</head>
+<body class="project-page" data-project-page="collection">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="ambient" aria-hidden="true"><span class="glow glow-one"></span><span class="glow glow-two"></span><span class="glow glow-three"></span></div>
+  <header class="site-header">
+    <a class="brand" href="../#home" aria-label="Rakibul — Home"><span data-brand-first>RAKIB</span><span class="red" data-brand-last>UL</span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link" href="../#home">Home</a>
+      <a class="nav-link" href="../#about">About</a>
+      <a class="nav-link active" href="./" aria-current="page">Projects</a>
+      <a class="nav-link" href="../#contact">Contact <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main" class="section project-page-main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">/</span><span aria-current="page">Projects</span></nav>
+    <div class="page-intro">
+      <div class="section-label">THE COLLECTION</div>
+      <h1>All <span class="serif">projects<span class="red">.</span></span></h1>
+      <p>Select a project to see its details.</p>
+      <span class="collection-note" data-collection-note hidden></span>
+    </div>
+    <ol class="project-collection" id="project-collection" aria-label="All projects"></ol>
+    <noscript><p class="project-noscript">Enable JavaScript to load the project collection.</p></noscript>
+  </main>
+  <footer><a class="footer-name" href="../" data-name>Rakibul</a><span>© <span id="year"></span> · Personal portfolio</span><a href="../#work">SELECTED WORK ↗</a></footer>
+</body>
+</html>

@@ -3,6 +3,8 @@ import { startRenderAnimation } from './hero-motion.js';
 import { animateCounters } from './counter-motion.js';
 import { setupAboutSection } from './about.js';
 import { startAboutGlobe } from './about-motion.js';
+import { visibleProjects } from './projects-data.js';
+import { renderProjectCards } from './project-cards.js';
 
 document.title = portfolio.title;
 document.querySelector('meta[name="description"]').content = portfolio.description;
@@ -56,38 +58,7 @@ if (portfolio.cv.url) {
   } catch { /* Keep the link unavailable until a valid CV path is supplied. */ }
 }
 
-function safeURL(value) {
-  try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; }
-  catch { return null; }
-}
-for (const project of portfolio.projects) {
-  const article = document.createElement('article');
-  const visual = document.createElement('div');
-  visual.className = 'project-visual ' + (project.theme === 'grid' ? 'grid' : 'orbit');
-  visual.setAttribute('aria-hidden', 'true');
-  const status = document.createElement('span');
-  status.className = 'project-status';
-  const url = safeURL(project.url);
-  status.textContent = url ? 'VIEW PROJECT' : 'COMING SOON';
-  visual.append(status);
-  const meta = document.createElement('div');
-  meta.className = 'project-meta';
-  const details = document.createElement('div');
-  const title = document.createElement('h3');
-  title.className = 'project-title'; title.textContent = project.title;
-  const category = document.createElement('p');
-  category.className = 'project-category'; category.textContent = project.category;
-  details.append(title, category);
-  const number = document.createElement('span');
-  number.className = 'project-number'; number.textContent = project.number;
-  meta.append(details, number);
-  if (url) {
-    const link = document.createElement('a');
-    link.className = 'project-link'; link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
-    link.append(visual, meta); article.append(link);
-  } else article.append(visual, meta);
-  document.querySelector('#projects').append(article);
-}
+renderProjectCards(document.querySelector('#projects'), visibleProjects().filter(project => project.featured));
 if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(portfolio.email)) {
   const contact = document.querySelector('#contact-link');
   contact.href = 'mailto:' + portfolio.email;

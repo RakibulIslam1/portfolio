@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="{{DESCRIPTION}}">
+  <title>{{TITLE}} — {{NAME}}</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../projects.css">
+  <script type="module" src="../../project-pages.js"></script>
+</head>
+<body class="project-page" data-project-page="detail" data-project-slug="{{SLUG}}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="ambient" aria-hidden="true"><span class="glow glow-one"></span><span class="glow glow-two"></span><span class="glow glow-three"></span></div>
+  <header class="site-header">
+    <a class="brand" href="../../#home" aria-label="{{NAME}} — Home"><span data-brand-first>{{BRAND_FIRST}}</span><span class="red" data-brand-last>{{BRAND_LAST}}</span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link" href="../../#home">Home</a>
+      <a class="nav-link" href="../../#about">About</a>
+      <a class="nav-link active" href="../" aria-current="page">Projects</a>
+      <a class="nav-link" href="../../#contact">Contact <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main" class="section project-page-main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Home</a><span aria-hidden="true">/</span><a href="../">Projects</a><span aria-hidden="true">/</span><span data-project-breadcrumb aria-current="page">{{TITLE}}</span></nav>
+    <section class="project-detail-hero" aria-labelledby="project-title">
+      <div class="project-detail-copy"><p class="project-kicker" data-project-category></p><h1 id="project-title">{{TITLE}}</h1><p class="project-detail-summary" data-project-summary>{{DESCRIPTION}}</p><span class="collection-note" data-project-preview hidden>Layout preview · images and details to follow</span></div>
+      <div class="project-detail-visual" data-project-visual></div>
+    </section>
+    <div class="project-detail-body">
+      <dl class="project-facts" data-project-facts hidden></dl>
+      <div data-project-story></div>
+      <div class="project-return"><a class="button button-secondary" href="../"><span aria-hidden="true">←</span> Back to all projects</a></div>
+    </div>
+    <noscript><p class="project-noscript">Enable JavaScript to load project images and the full write-up. The project collection is available through the button above.</p></noscript>
+  </main>
+  <footer><a class="footer-name" href="../../" data-name>{{NAME}}</a><span>© <span id="year"></span> · Personal portfolio</span><a href="../../#work">SELECTED WORK ↗</a></footer>
+</body>
+</html>

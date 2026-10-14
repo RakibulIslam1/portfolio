@@ -1,6 +1,6 @@
 # Personal portfolio
 
-A Node.js portfolio with a black background, three oversized red radial gradients, a fixed navigation bar, and smooth scrolling between Home, About, Work, and Contact.
+A Node.js portfolio with a black background, three oversized red radial gradients, a fixed navigation bar, and smooth scrolling between homepage sections. The Projects collection and individual project pages extend the homepage.
 
 ## Run
 
@@ -14,14 +14,14 @@ Open http://localhost:3000. The server binds to localhost. Use `npm start` witho
 
 ## Customize
 
-Edit `public/content.js` for your name, two-color brand text, achievement counters, skill keywords, CV path, biography, projects, render images, and email. Empty project URLs show an honest coming-soon state. A valid email activates the contact link. Edit `public/styles.css` for the design and `public/index.html` for sections.
+Edit `public/content.js` for your name, two-color brand text, achievement counters, skill keywords, CV path, biography, projects, render images, and email. A valid email activates the contact link. Edit `public/styles.css` for the core design, `public/projects.css` for project layouts, and `public/index.html` for homepage sections.
 
 The About biography and education come from the owner's supplied CV. Project descriptions, email, and social profile URLs still await the owner's input. Achievement counters use the owner's previously confirmed values.
 
 ## Verify and build
 
 - `npm run check`: JavaScript syntax checks.
-- `npm run build`: copy the public site to `dist/` for static hosting.
+- `npm run build`: regenerate `dist/` from the public site and generate dedicated project pages for static hosting. The build refuses a linked output directory and removes stale generated pages.
 
 Google Fonts improve the typography when internet access is available; local fonts provide a fallback. The website needs no backend service or API key. The Node server serves local development; GitHub Pages serves the built static files.
 
@@ -43,7 +43,36 @@ Responsive layout: desktop and tablets use two normal-flow hero columns; phones 
 
 The fixed navbar uses a compact 64px desktop height (90px with two mobile rows) and separate, wider side padding. Hero image size also responds to screen height. The A little further arrow links to About below the portrait.
 
-The hero counters show the owner's supplied 20+ projects, 25+ national wins, 7 WRO prizes, and 8th place worldwide at RoboSub. The project counter uses 20+ while only placeholder projects exist; once real entries are added, it shows their count. Remove `placeholder: true` (or set it to false) when replacing a placeholder with a real project. Real entries do not need a public URL to count.
+The hero counters show the owner's supplied 20+ projects, 25+ national wins, 7 WRO prizes, and 8th place worldwide at RoboSub. The project counter uses 20+ while only placeholder projects exist; once real entries are added, it shows their count. Remove `placeholder: true` (or set it to false) when replacing a placeholder with a real project. Dedicated URLs are generated automatically from slugs.
+
+## Adding projects
+
+The owner requested this page structure on 2026-10-15. The homepage shows one full-width capsule per selected project, with circular images alternating left/right on desktop and above centered copy on phones. See all projects opens `/projects/`, a block grid of every listed project. Clicking either a homepage capsule or a collection card opens `/projects/<slug>/`. Every detail page has a Back to all projects button, plus links to the homepage sections.
+
+All project content belongs in the `projects` array in `public/content.js`. Three clearly labelled preview entries currently demonstrate the layout without claiming real project details or assigning existing animation renders to unnamed projects. As soon as a real entry is added, preview entries disappear from the homepage, collection, and generated pages. The hero count excludes previews.
+
+Use this structure for an owner-supplied project, replacing the example strings and image path before publishing:
+
+```js
+{
+  slug: 'your-project-slug', // Unique lowercase letters/numbers/hyphens; keep stable for links.
+  title: 'Your project title',
+  category: '',
+  summary: '',             // Short description on the homepage, collection, and detail hero.
+  image: { src: './images/your-project.png', alt: '' },
+  featured: true,          // false lists it only in the full collection.
+  placeholder: false,
+  description: '',         // Longer Overview write-up; newlines are preserved.
+  facts: [],               // { label: '', value: '' } — add only supplied facts.
+  sections: [],            // { heading: '', paragraphs: [''], image: { src: '', alt: '', caption: '' } }
+  gallery: [],             // { src: './images/photo.png', alt: '', caption: '' }
+  links: []                // { label: '', url: 'https://...' } — external project resources.
+}
+```
+
+Image and gallery paths resolve from the site root at every page depth, including GitHub Pages' `/portfolio/` prefix. Missing cover images preserve the circular placeholder. Optional facts, write-up sections, gallery, and external links appear only when supplied. Cards always navigate to the internal project page; external URLs belong in `links` on that page. Projects appear in array order, and `featured: true` selects the homepage shortlist.
+
+`public/project-cards.js` shares capsule/card media and navigation. `public/project-pages.js` renders the collection and detail content; `public/projects-data.js` validates slugs and resolves URLs. The Node server and static builder both use `scripts/project-pages.mjs` and `scripts/templates/project.html`, so direct visits and refreshes work without SPA routing or a GitHub Pages 404 workaround. No dependencies, database, or CMS were added. New project entries automatically receive generated pages on the next build/deployment.
 
 `public/hero-motion.js` uses the 13 supplied project renders listed in `content.js`. On reload, all 13 drift at fresh random positions along the portrait's very bottom edge. Positions are sampled freely with a minimum-distance check; there are no rows, columns, or fixed anchors. Floating sizes scale with the number of renders to preserve spacing as assets are added. Varied sizes and gentle drift reduce crowding. They follow staggered curved flights into the heading once, with `create` fading gradually from the first departure through the flight window. Later cycles only hide `create`, scroll the render row right to left inside its exact word box, and restore the text for a 4.2-second rest. Resizing, scrolling back, and changing motion preference never replay the portrait intro. In-memory small textures keep the motion light without changing source images.
 

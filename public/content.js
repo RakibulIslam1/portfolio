@@ -61,8 +61,12 @@ export const portfolio = {
   },
   email: '',
   cv: { url: './files/Rakib_CV.pdf', filename: 'Rakib_CV.pdf' },
+  // Replace preview entries with real work. featured selects homepage capsules.
+  // Slugs form permanent project URLs. Image paths are relative to public/.
+  // Optional details: description, facts, sections, gallery, and links (see README).
   projects: [
-    { number: '01', title: 'First project', category: 'Project details coming soon', theme: 'orbit', url: '', placeholder: true },
-    { number: '02', title: 'Next chapter', category: 'Project details coming soon', theme: 'grid', url: '', placeholder: true }
+    { slug: 'project-01', title: 'Project 01', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
+    { slug: 'project-02', title: 'Project 02', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
+    { slug: 'project-03', title: 'Project 03', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true }
   ]
 };

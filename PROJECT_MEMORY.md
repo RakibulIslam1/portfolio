@@ -9,14 +9,14 @@ Last updated: 2026-10-15 (Asia/Dhaka)
 - Full dark theme with a black background.
 - Two or three large red round circles, potentially half cut by edges, fading into transparency toward their outer edges.
 - Navigation always stays at the top.
-- Single page until explicitly extended; menu links automatically scroll to their sections.
+- Owner extended the site on 2026-10-15: retain homepage sections and add a Projects collection plus dedicated project pages. Homepage menu links still scroll to their sections.
 - Maintain memory and documentation for future teammates.
 
 ## Implementation decisions
 
 - Local project in C:/Users/Rakibul/Desktop/portfolio. Owner requested publishing to their GitHub account and GitHub Pages on 2026-10-15; the selected destination is RakibulIslam1/portfolio.
 - Dependency-free Node.js server and vanilla HTML/CSS/JavaScript; native ES modules.
-- Home, About, Work, and Contact sections.
+- Home, About, Work, and Contact homepage sections, plus /projects/ and /projects/<slug>/ pages.
 - Three CSS radial-gradient ambient circles; the hero uses the supplied portrait images/S.png with a subtle red glow and masks that soften all four edges and corners. A web copy is in public/images/S.png.
 - Black/red palette, large typography, italic serif accents, subtle borders.
 - Public content centralized in public/content.js.
@@ -34,7 +34,7 @@ Last updated: 2026-10-15 (Asia/Dhaka)
 
 ## Handoff rules
 
-Read AGENTS.md and README.md. Update this file as new details arrive. Keep the visual direction and single-page scope unless the owner changes them. Record verification results below after running checks.
+Read AGENTS.md and README.md. Update this file as new details arrive. Keep the visual direction and confirmed homepage/Projects scope unless the owner changes them. Record verification results below after running checks.
 
 ## Verification
 
@@ -202,3 +202,15 @@ Read AGENTS.md and README.md. Update this file as new details arrive. Keep the v
 - Pre-publication validation: npm run check and npm run build passed. Built-site Chrome checks at 1440x900 and 390x844 verified CSS/modules, all render images, portraits, CV link resolution, navigation, education switching, globe movement, and no page overflow under /portfolio/. Every asset passed HTTP/build-byte checks, including the original PDF; no browser JavaScript exceptions were observed.
 - Published the source to main in commit 17446f0. The first deployment completed successfully: https://github.com/RakibulIslam1/portfolio/actions/runs/38644041100. GitHub Actions passed the JavaScript checks, static build, artifact upload, and Pages deployment. HTTPS is enabled for the live address above.
 - Live-site verification: Chrome checks at 1440x900 and 390x844 passed for the public GitHub Pages URL, including responsive rendering, all 13 project renders, portraits, five skill chips, CV path, section navigation, education switching, and globe rotation. The homepage and every deployed CSS/module/image/PDF URL returned HTTP 200 and matched the built files (text line endings normalized, binary files exact). No browser JavaScript exceptions occurred. Physical devices and other browser engines remain untested; actual browser file-save behavior retains the previously recorded QA limitation.
+
+## Selected projects, collection, and dedicated pages — 2026-10-15
+
+- Owner explicitly extended the single-page scope: show a shortlist on the homepage, a See all projects button opening a Projects page, a block-format list of all projects, and a dedicated page for each project. Both homepage and collection cards must open that project's page directly. Every detail page includes a Back to all projects button. Owner will provide project images and details next.
+- Homepage Work now uses one full-width capsule per row. Circular media alternates left/right on desktop and tablets; narrow phones stack the circle above centered description/actions. The full collection uses three columns on large displays, two on tablets, and one on phones. All layouts retain black/red branding, fixed navigation, keyboard links, readable headings, and reduced-motion behavior.
+- Replaced the two old abstract demo cards with three explicitly marked Project 01/02/03 layout previews. No project claims, technical categories, outcomes, roles, or unconfirmed images were invented. The existing animation renders remain assigned only to their established animations; supplied project covers will replace the new circular image placeholders.
+- Project configuration stays in public/content.js: slug, title, category, summary, image {src, alt}, featured, and placeholder. Optional description, facts, sections, gallery, and links support the detail write-up. Unique lowercase hyphenated slugs form permanent /projects/<slug>/ URLs. featured selects the homepage; every real entry appears in the collection. Preview entries disappear automatically as soon as real projects are supplied, and remain excluded from the existing project counter.
+- Architecture decision: keep Node.js and native browser modules with no npm dependencies. public/project-cards.js shares media/cards, projects-data.js validates slugs and resolves site-root URLs, and project-pages.js fills the collection and detail layouts. scripts/project-pages.mjs renders an escaped HTML detail template for both the local server and static build. public/projects/index.html is the collection. The builder generates one real HTML directory/index page per visible project, supporting GitHub Pages /portfolio/ paths, direct visits, and refresh without SPA fallback routing.
+- Local server now serves directory index files, redirects project paths to a trailing slash, and renders known project routes. Missing projects return 404; HEAD, method restrictions, and traversal protection are retained. Build regenerates only the explicitly checked dist folder, refuses symbolic-link output, and removes stale generated pages. AGENTS.md, README, and the syntax-check command document this extension and the data schema.
+- Validation: npm run check and npm run build passed. Local HTTP checks passed for the homepage, collection, every generated detail page, new modules/CSS, CV, redirects, HEAD responses, missing routes, 405 methods, and traversal protection; detail HTML matches build bytes. Chrome checks passed at 11 sizes from 280x653 through 2560x1440, including capsule/grid breakpoints and short desktop screens: round alternating or stacked media, one project per row, collection columns, direct featured links, keyboard card navigation, detail refresh, return buttons, cross-page About offsets, unchanged mobile hero placement/counter fallback, and no page overflow.
+- Synthetic data was tested only in an ignored QA server: real featured/unfeatured selection, real project count, hiding previews, safely escaped titles, root-relative images at nested URLs, optional facts/write-up/gallery/resources, rejected unsafe resource URLs, missing-image fallback, and empty lists. No test content was written into public/content.js. No browser JavaScript exceptions occurred. Reviewed desktop/mobile homepage, collection, and detail screenshots with external fonts blocked. Physical devices and other browser engines remain untested.
+- Pending: owner-supplied project titles, slugs, shortlist choices, cover images, short descriptions, full write-ups, and optional facts/gallery/resource links. Social and contact details remain pending as previously confirmed. This layout update is being published through the existing main-branch GitHub Pages workflow.
