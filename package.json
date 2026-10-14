@@ -1,0 +1,16 @@
+{
+  "name": "personal-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Dark portfolio with red gradient accents",
+  "scripts": {
+    "dev": "node --watch server.mjs",
+    "start": "node server.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node --check server.mjs && node --check public/app.js && node --check public/content.js && node --check public/hero-motion.js && node --check public/counter-motion.js && node --check public/about.js && node --check public/about-motion.js && node --check public/render-assets.js && node --check scripts/build.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

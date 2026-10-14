@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="A personal portfolio taking shape.">
+  <title>Rakibul — Portfolio</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="ambient" aria-hidden="true"><span class="glow glow-one"></span><span class="glow glow-two"></span><span class="glow glow-three"></span></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Rakibul — Home"><span data-brand-first>RAKIB</span><span class="red" data-brand-last>UL</span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link active" href="#home" aria-current="location">Home</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#work">Work</a>
+      <a class="nav-link" href="#contact">Contact <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section id="home" class="hero section">
+      <canvas class="render-back-canvas" aria-hidden="true" hidden></canvas>
+      <div class="hero-copy">
+        <h1>A space for<br>what I <span class="serif"><span class="create-slot"><span class="create-text">create</span></span><span class="red">.</span></span></h1>
+        <dl class="hero-stats" aria-label="Projects and competition results">
+          <div class="hero-stat"><dt>Projects</dt><dd>20+</dd></div>
+          <div class="hero-stat"><dt>National wins</dt><dd>25+</dd></div>
+          <div class="hero-stat"><dt>WRO prizes</dt><dd>7</dd></div>
+          <div class="hero-stat"><dt>RoboSub worldwide</dt><dd>8th</dd></div>
+        </dl>
+        <ul class="hero-skills" aria-label="Technical skills" tabindex="0">
+          <li class="skill-chip">Embedded Systems</li>
+          <li class="skill-chip">PCB Design</li>
+          <li class="skill-chip">Robotics</li>
+          <li class="skill-chip">Control Systems</li>
+          <li class="skill-chip">3D Design</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#work">
+            <span class="button-label">Explore the work</span>
+            <span class="button-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M4 4H12V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a id="cv-download" class="button button-secondary" href="./files/Rakib_CV.pdf" download="Rakib_CV.pdf" title="Download CV">
+            <span class="button-label">Download CV</span>
+            <span class="button-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2.5V11.5M5.5 8L9 11.5L12.5 8M3.5 12.5V15.5H14.5V12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art"><img class="hero-portrait" src="./images/S.png" alt="Portrait of Rakibul" width="1122" height="1402" fetchpriority="high" decoding="async"></div>
+      <canvas class="render-canvas" aria-hidden="true" hidden></canvas>
+      <div class="hero-bottom">
+        <a class="scroll-cue" href="#about" aria-label="A little further — about me">
+          <span>A little further</span>
+          <svg aria-hidden="true" width="14" height="26" viewBox="0 0 14 26" fill="none"><path d="M7 1V24M2 19L7 24L12 19" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <button class="motion-toggle" type="button" aria-label="Pause project animation" aria-pressed="false" title="Pause project animation" hidden>
+          <svg class="pause-icon" aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 3V11M10 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg class="play-icon" aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 2.5L11 7L4 11.5V2.5Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </section>
+    <section id="about" class="section about" aria-labelledby="about-title">
+      <div class="section-label about-label">ABOUT ME</div>
+      <div class="about-visual">
+        <div class="globe-stage" role="img" aria-label="A rotating globe made of project renders around Rakibul's portrait">
+          <canvas class="globe-back" aria-hidden="true"></canvas>
+          <div class="globe-portrait"><img data-about-portrait src="./images/S.png" alt="Portrait of Rakibul" width="1122" height="1402" decoding="async"></div>
+          <canvas class="globe-front" aria-hidden="true"></canvas>
+        </div>
+      </div>
+      <div class="about-copy">
+        <h2 id="about-title"><span data-about-heading>About me</span><br><span class="serif" data-about-heading-accent></span></h2>
+        <div id="about-details" class="about-details">
+          <div id="about-overview"><p data-about></p><div class="education-current"><div class="education-kicker">CURRENTLY STUDYING <span data-education-period></span></div><h3 data-education-subject></h3><p data-education-institution></p><span class="education-note" data-education-note></span></div></div>
+          <div id="about-education" hidden><p class="education-history-label">Educational background</p><ol class="education-history"></ol></div>
+        </div>
+        <div class="about-controls">
+          <div class="social-links" role="group" aria-label="Social profiles"></div>
+          <button id="education-toggle" class="education-toggle" type="button" aria-expanded="false" aria-controls="about-details"><span data-education-toggle-label>Educational background</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M8 3L13 8L8 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+    </section>
+    <section id="work" class="section work">
+      <div class="section-heading"><div><div class="section-label"><span class="red">02 /</span> SELECTED WORK</div><h2>Ideas made <span class="serif">real.</span></h2></div><p>A place for projects.<br>Details coming soon.</p></div>
+      <div id="projects" class="projects"></div>
+    </section>
+    <section id="contact" class="section contact">
+      <div class="section-label"><span class="red">03 /</span> GET IN TOUCH</div>
+      <h2>Have something<br>in <span class="serif">mind<span class="red">?</span></span></h2>
+      <p>This will be the place to start a conversation.</p>
+      <a id="contact-link" class="button" hidden>Say hello <span aria-hidden="true">↗</span></a>
+      <span id="contact-pending" class="contact-pending">Contact details coming soon <span aria-hidden="true">↗</span></span>
+    </section>
+  </main>
+  <footer><a class="footer-name" href="#home" data-name>Rakibul</a><span>© <span id="year"></span> · Personal portfolio</span><a href="#home">BACK TO TOP ↑</a></footer>
+</body>
+</html>
