@@ -5,6 +5,7 @@ import { setupAboutSection } from './about.js';
 import { startAboutGlobe } from './about-motion.js';
 import { visibleProjects } from './projects-data.js';
 import { renderProjectCards } from './project-cards.js';
+import { setupAchievementsSection } from './achievements.js';
 
 document.title = portfolio.title;
 document.querySelector('meta[name="description"]').content = portfolio.description;
@@ -12,6 +13,7 @@ for (const element of document.querySelectorAll('[data-name]')) element.textCont
 document.querySelector('[data-brand-first]').textContent = portfolio.brand.first;
 document.querySelector('[data-brand-last]').textContent = portfolio.brand.last;
 setupAboutSection(portfolio.about);
+setupAchievementsSection(portfolio.achievements);
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 const projectCount = portfolio.projects.filter(project => !project.placeholder).length;

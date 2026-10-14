@@ -8,7 +8,7 @@
     "dev": "node --watch server.mjs",
     "start": "node server.mjs",
     "build": "node scripts/build.mjs",
-    "check": "node --check server.mjs && node --check public/app.js && node --check public/content.js && node --check public/hero-motion.js && node --check public/counter-motion.js && node --check public/about.js && node --check public/about-motion.js && node --check public/render-assets.js && node --check public/projects-data.js && node --check public/project-cards.js && node --check public/project-pages.js && node --check scripts/project-pages.mjs && node --check scripts/build.mjs"
+    "check": "node --check server.mjs && node --check public/app.js && node --check public/content.js && node --check public/hero-motion.js && node --check public/counter-motion.js && node --check public/about.js && node --check public/about-motion.js && node --check public/render-assets.js && node --check public/projects-data.js && node --check public/project-cards.js && node --check public/project-pages.js && node --check public/achievements.js && node --check scripts/project-pages.mjs && node --check scripts/build.mjs"
   },
   "engines": {
     "node": ">=22"

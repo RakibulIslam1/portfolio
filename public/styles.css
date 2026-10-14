@@ -35,6 +35,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--red); outline-o
 .brand { display: inline-flex; align-items: center; gap: 0; flex-shrink: 0; font-family: 'Manrope', Arial, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: 1.5px; color: #fff; }
 .red { color: var(--red); }
 nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 36px); }
+.site-navigation { gap: clamp(12px, 2.2vw, 28px); }
+.nav-achievements-short { display: none; }
 .nav-link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 13px; color: var(--muted); transition: color .2s; position: relative; white-space: nowrap; }
 .nav-link:hover, .nav-link.active { color: var(--text); }
 .nav-link.active:after { content: ''; height: 3px; width: 3px; position: absolute; bottom: 2px; left: 50%; background: var(--red); border-radius: 50%; }
@@ -206,6 +208,10 @@ footer > a:last-child { font-size: 9px; letter-spacing: 1px; }
 }
 
 @media (max-width: 360px) {
+  .site-navigation { gap: 6px; }
+  .site-navigation .nav-link { font-size: 11px; }
+  .nav-achievements-long { display: none; }
+  .nav-achievements-short { display: inline; }
   h1 { font-size: clamp(34px, 11.5vw, 41px); }
   .hero-actions { gap: 8px; }
   .hero-actions .button { gap: 8px; padding-inline: 11px; font-size: 11px; }
