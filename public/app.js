@@ -13,7 +13,7 @@ for (const element of document.querySelectorAll('[data-name]')) element.textCont
 document.querySelector('[data-brand-first]').textContent = portfolio.brand.first;
 document.querySelector('[data-brand-last]').textContent = portfolio.brand.last;
 setupAboutSection(portfolio.about);
-setupAchievementsSection(portfolio.achievements);
+setupAchievementsSection(portfolio.achievements, portfolio.cv);
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 const projectCount = portfolio.projects.filter(project => !project.placeholder).length;

@@ -8,7 +8,7 @@ Read PROJECT_MEMORY.md before making changes.
 - Keep all personal content in public/content.js. Do not invent the owner's biography, role, experience, metrics, projects, or contact details.
 - Project entries need unique lowercase hyphenated slugs; featured controls homepage selection. Clearly marked placeholder entries are layout previews and must not count as real projects. The first real entry hides previews automatically. Keep local and generated static project routes consistent.
 - Preserve mobile responsiveness, keyboard navigation, semantic headings, and reduced-motion support.
-- Homepage Achievements uses the owner's CV draft-1.pdf: keep team credits, exact placements/categories, and undated results separate. All achievement data stays in public/content.js; year records use native details/summary. The current downloadable CV is public/files/CV draft-1.pdf.
+- Homepage Achievements must stay short: two compact international standings, three selected competition results, and a link to the full CV. The owner removed large cards and year-group accordions. Preserve CV-backed placements/categories and team credits; all data stays in public/content.js. The current downloadable CV is public/files/CV draft-1.pdf.
 - On mobile, center the hero text and actions horizontally with the portrait beneath them; do not vertically center the whole hero. Preserve soft blending on every portrait edge and the RAKIB (white) / UL (red) navbar wordmark.
 - The project uses Node.js and native browser modules with no external npm dependencies. Discuss material architecture changes through project notes.
 - Run npm run check and npm run build after relevant edits. Verify changed server behavior with HTTP requests.
