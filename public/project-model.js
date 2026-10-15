@@ -112,7 +112,9 @@ export function createProjectModel(project, headingLevel = 'h3') {
     group.append(term, value);
     measurements.append(group);
   }
-  section.append(header, stage, toolbar, assembly, help, measurements, note, status);
+  section.append(header, stage, toolbar, assembly, help);
+  if (measurements.childElementCount) section.append(measurements);
+  section.append(note, status);
 
   let viewer;
   let loading = false;
@@ -147,6 +149,9 @@ export function createProjectModel(project, headingLevel = 'h3') {
       const { createHullViewer } = await import('./vendor/mongla/hull-viewer.js');
       viewer = await createHullViewer(canvas, src, {
         autoRotate: false, rim: '#b9c5d5', ambient: [0.20, 0.20, 0.23],
+        yaw: Number.isFinite(model.view?.yaw) ? model.view.yaw : undefined,
+        pitch: Number.isFinite(model.view?.pitch) ? model.view.pitch : undefined,
+        distance: Number.isFinite(model.view?.distance) && model.view.distance > 0 ? model.view.distance : undefined,
         onSpinChange: updateRotation
       });
       section.dataset.modelState = 'ready';
@@ -155,7 +160,7 @@ export function createProjectModel(project, headingLevel = 'h3') {
       load.hidden = true;
       for (const button of [rotate, zoomOut, zoomIn, reset]) button.disabled = false;
       range.disabled = false;
-      status.textContent = '3D ready · ' + viewer.parts + ' CAD parts';
+      status.textContent = model.readyLabel || '3D ready · ' + viewer.parts + ' CAD parts';
       viewer.frame();
     } catch {
       unavailable();

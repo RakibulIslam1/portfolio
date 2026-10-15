@@ -6,6 +6,8 @@
 *.css text eol=lf
 *.md text eol=lf
 *.png binary
+*.jpg binary
+*.jpeg binary
 *.webp binary
 *.mgla binary
 *.pdf binary

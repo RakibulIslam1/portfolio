@@ -147,8 +147,10 @@
     gl.uniform3fv(U('uAmbient'), opts.ambient || [0.055, 0.075, 0.125]);
     gl.uniform1f(U('uLivery'), opts.livery == null ? 1.0 : opts.livery);
 
-    let yaw = opts.yaw != null ? opts.yaw : -0.7;
-    let pitch = opts.pitch != null ? opts.pitch : 0.26;
+    const initialYaw = opts.yaw != null ? opts.yaw : -0.7;
+    const initialPitch = opts.pitch != null ? opts.pitch : 0.26;
+    let yaw = initialYaw;
+    let pitch = initialPitch;
     let spin = opts.autoRotate !== false, visible = true, raf = 0, stopped = false;
     const setSpin = on => { spin = !!on; opts.onSpinChange?.(spin); };
     let explodeT = 0, focusId = -1, explodeShown = 0;
@@ -223,7 +225,7 @@
           return w / h;
         }
 
-        const DIST = 2.24;
+        const DIST = opts.distance != null ? opts.distance : 2.24;
         /* dolly out as the hull opens, so the parts stay in frame and the whole
            thing reads as one move rather than as pieces escaping */
         const distFor = t => DIST * (1 + 0.58 * t) * zoom;
@@ -329,7 +331,7 @@
           if (k === ' ')          { setSpin(!spin); e.preventDefault(); }
           if (k === '+' || k === '=') { zoom = Math.max(0.42, zoom * 0.88); e.preventDefault(); }
           if (k === '-' || k === '_') { zoom = Math.min(2.40, zoom * 1.14); e.preventDefault(); }
-          if (k === '0')          { zoom = 1; yaw = -0.7; pitch = 0.26; e.preventDefault(); }
+          if (k === '0')          { zoom = 1; yaw = initialYaw; pitch = initialPitch; e.preventDefault(); }
           if (manual !== null) {
             if (k === ',' || k === '<') { manual = Math.max(0, manual - 0.08); e.preventDefault(); }
             if (k === '.' || k === '>') { manual = Math.min(1, manual + 0.08); e.preventDefault(); }
@@ -348,7 +350,7 @@
           explode(t) { if (manual === null) explodeT = Math.max(0, Math.min(1, t)); wake(); },
           manual()   { return manual !== null; },
           zoom(z)    { if (z != null) zoom = Math.max(0.42, Math.min(2.4, z)); wake(); return zoom; },
-          reset()    { zoom = 1; yaw = -0.7; pitch = 0.26; manual = null; explodeT = 0; setSpin(false); wake(); },
+          reset()    { zoom = 1; yaw = initialYaw; pitch = initialPitch; manual = null; explodeT = 0; setSpin(false); wake(); },
           /* keep one CAD body lit and dim the rest; -1 restores all */
           focus(id) { focusId = id == null ? -1 : id; wake(); },
           spin(on) { setSpin(on); wake(); },

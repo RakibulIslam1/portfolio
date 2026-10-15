@@ -170,6 +170,87 @@ export const portfolio = {
       ],
       repository: 'RakibulIslam1/mongla_ws'
     },
+    {
+      slug: 'lazygo-wro-2025',
+      title: 'LazyGo · WRO 2025',
+      category: 'Autonomous rover · Future Engineers',
+      summary: 'An autonomous WRO rover combining Ackermann steering, LiDAR navigation and a panning camera to complete laps, avoid coloured obstacles and park.',
+      image: { src: './images/Lazy Go Rover Studio Render.png', alt: 'Team LazyGo rover studio render with its panning camera, LiDAR and layered chassis' },
+      featured: true,
+      description: 'LazyBot is Team LazyGo’s autonomous rover for the World Robot Olympiad 2025 Future Engineers category. My work focused on hardware and CAD design, alongside the team’s embedded-electronics and ROS development. The vehicle combines a compact three-deck chassis with range sensing, colour confirmation and odometry for the open and obstacle rounds.',
+      facts: [
+        { label: 'My contribution', value: 'Hardware & CAD design' },
+        { label: 'Challenge', value: 'WRO Future Engineers' },
+        { label: 'Team result', value: '6th worldwide · Team LazyGo' }
+      ],
+      specifications: [
+        { heading: 'Chassis & drive', facts: [
+          { label: 'Documented footprint', value: '200 × 100 mm' },
+          { label: 'Wheelbase', value: '115 mm' },
+          { label: 'Documented turning radius', value: 'Below 150 mm' },
+          { label: 'Steering & drivetrain', value: 'Ackermann · mechanical differential' },
+          { label: 'Drive motor', value: '25GA370 geared motor with encoder' }
+        ] },
+        { heading: 'Compute & sensing', facts: [
+          { label: 'Main computer', value: 'Raspberry Pi 5 · 8 GB' },
+          { label: 'Low-level controller', value: 'ESP32' },
+          { label: 'Range sensor', value: 'RPLidar C1 · 360° · 10 Hz' },
+          { label: 'Orientation', value: 'BNO055 IMU' },
+          { label: 'Vision', value: 'Logitech C270 · servo pan' }
+        ] },
+        { heading: 'Power & actuation', facts: [
+          { label: 'Battery', value: '3S LiPo · 11.1 V nominal' },
+          { label: 'Compute supply', value: 'Dedicated 5.1 V rail' },
+          { label: 'Servo/peripheral supply', value: 'Separate 5 V rail' },
+          { label: 'Motor driver', value: 'VNH2SP30' },
+          { label: 'Steering & camera servos', value: 'PS1171MG' }
+        ] }
+      ],
+      specificationsNote: 'Dimensions, turning radius and component choices are documented in the team repository. The international placement is the team result recorded in my CV.',
+      model: {
+        src: './models/lazygo/lazybot.mgla',
+        poster: './images/Lazy Go Rover Studio Render.png',
+        title: 'LazyBot · inspect the assembly',
+        alt: 'Interactive CAD assembly of LazyBot with its four-wheel chassis, stacked electronics, LiDAR and camera head',
+        note: 'Onshape car_v2 assembly reference. The export includes a loose component, retained in its original position. The footprint above describes the documented chassis.',
+        view: { yaw: 2.45, pitch: 0.26, distance: 2.8 },
+        readyLabel: '3D ready · LazyBot assembly',
+        sourceURL: 'https://cad.onshape.com/documents/0ec023d9700593bfeebabdea/w/02e5710fbedd7baee1480c4a/e/63f1a3919addf09c73a6e4d6'
+      },
+      sections: [
+        {
+          heading: 'Chassis and steering',
+          paragraphs: ['The three stacked decks separate the drivetrain and battery from the compute platform and upper electronics. A servo-driven Ackermann linkage gives the front wheels different steering angles, while a mechanical differential lets the rear wheels travel at different speeds. A printed input gear provides a documented 1:1.2 ratio. The low-mounted battery and serviceable decks keep the build compact and accessible.',
+            'The upper shell supports the LiDAR about 50 mm above the track. A second servo pans the camera toward a selected obstacle, so the robot can inspect its colour without turning the whole chassis. The main start input is a mechanical switch.']
+        },
+        {
+          heading: 'Navigation and parking',
+          paragraphs: ['ROS 2 separates serial communication, perception and driving into individual nodes. For the open round, a modified disparity-extender algorithm reduces each LiDAR ray’s usable distance where neighbouring obstacles would intersect the vehicle’s width, then chooses a clear direction.',
+            'In the obstacle round, changes in LiDAR range identify tower candidates and their approximate width. The camera turns toward the target for colour confirmation. Virtual boundaries enforce which side to pass. Motor-encoder distance and BNO055 heading provide odometry for lap tracking and parking alignment; a defined manoeuvre sequence completes the parallel park.']
+        },
+        {
+          heading: 'Electronics and power',
+          paragraphs: ['The Raspberry Pi 5 runs high-level navigation, vision and LiDAR processing. The ESP32 handles motor feedback, steering, camera pan, inertial readings and the OLED interface, exchanging commands and telemetry with the Pi over serial.',
+            'A 3S battery feeds separate regulated supplies for compute and servo loads. This separation addresses the inrush-current dips that previously caused Pi throttling and ESP32 resets. A custom through-hole integration board brings the controller, IMU, display and connections together using locally available components. The VNH2SP30 drives the geared motor.']
+        },
+        {
+          heading: 'Simulation and team',
+          paragraphs: ['The repository includes a Gazebo environment with the robot, track and simulated LiDAR, IMU and camera. Shared ROS 2 nodes let the team develop navigation away from the physical vehicle and move the same logic onto the rover.',
+            'Team LazyGo: Rakibul Islam — hardware and CAD design; Iqbal Samin Prithul — embedded electronics; A. N. M. Noor — software and ROS.']
+        }
+      ],
+      gallery: [
+        { src: './images/projects/lazygo/front.jpg', alt: 'Front view of the physical LazyBot rover', caption: 'The physical rover · front view' },
+        { src: './images/projects/lazygo/right.jpg', alt: 'Right-side view showing the physical LazyBot rover and its stacked chassis', caption: 'Chassis, electronics and sensor placement · right side' }
+      ],
+      links: [
+        { label: 'Explore the codebase', url: 'https://github.com/RakibulIslam1/LazyGo_WRO2025' },
+        { label: 'Mechanical design', url: 'https://github.com/RakibulIslam1/LazyGo_WRO2025/blob/main/models/README.md' },
+        { label: 'Software documentation', url: 'https://github.com/RakibulIslam1/LazyGo_WRO2025/blob/main/src/README.md' },
+        { label: 'Onshape assembly', url: 'https://cad.onshape.com/documents/0ec023d9700593bfeebabdea/w/02e5710fbedd7baee1480c4a/e/63f1a3919addf09c73a6e4d6' }
+      ],
+      repository: 'RakibulIslam1/LazyGo_WRO2025'
+    },
     { slug: 'project-01', title: 'Project 01', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
     { slug: 'project-02', title: 'Project 02', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
     { slug: 'project-03', title: 'Project 03', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true }

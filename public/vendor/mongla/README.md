@@ -18,3 +18,9 @@ Asset SHA-256:
 - hull-poster.webp: 448c424d83c4e7fe7a2dd4fb91db2993532bd5cf6ee84f95ac6de4a1215774ba
 
 The portfolio uses local assets and adds no npm/runtime library dependency or third-party iframe.
+
+LazyGo also uses this renderer with a separate, locally packed MGLA assembly;
+its geometry attribution and conversion records are in ../../models/lazygo/.
+Optional per-model yaw, pitch and camera distance now support that assembly's
+opening view. Both button and keyboard resets restore the configured angles;
+the original Mongla camera defaults and source assets are unchanged.
