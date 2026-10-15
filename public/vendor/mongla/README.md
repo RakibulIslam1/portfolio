@@ -24,3 +24,6 @@ its geometry attribution and conversion records are in ../../models/lazygo/.
 Optional per-model yaw, pitch and camera distance now support that assembly's
 opening view. Both button and keyboard resets restore the configured angles;
 the original Mongla camera defaults and source assets are unchanged.
+
+An optional model-specific download timeout is clamped to 1–60 seconds. LazyGo
+uses 45 seconds for its larger assembly; Mongla retains the 15-second default.

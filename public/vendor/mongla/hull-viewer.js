@@ -160,7 +160,9 @@
     let reduce = motion.matches;
     if (reduce) setSpin(false);
 
-    return fetch(url, { signal: AbortSignal.timeout(15000) })
+    const loadTimeout = Number.isFinite(opts.loadTimeoutMs)
+      ? Math.max(1000, Math.min(60000, opts.loadTimeoutMs)) : 15000;
+    return fetch(url, { signal: AbortSignal.timeout(loadTimeout) })
       .then(r => { if (!r.ok) throw new Error('hull ' + r.status); return r.arrayBuffer(); })
       .then(buf => {
         const m = parse(buf);

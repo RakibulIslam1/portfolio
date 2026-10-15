@@ -152,6 +152,7 @@ export function createProjectModel(project, headingLevel = 'h3') {
         yaw: Number.isFinite(model.view?.yaw) ? model.view.yaw : undefined,
         pitch: Number.isFinite(model.view?.pitch) ? model.view.pitch : undefined,
         distance: Number.isFinite(model.view?.distance) && model.view.distance > 0 ? model.view.distance : undefined,
+        loadTimeoutMs: model.loadTimeoutMs,
         onSpinChange: updateRotation
       });
       section.dataset.modelState = 'ready';

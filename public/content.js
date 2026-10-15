@@ -214,6 +214,7 @@ export const portfolio = {
         alt: 'Interactive CAD assembly of LazyBot with its four-wheel chassis, stacked electronics, LiDAR and camera head',
         note: 'Onshape car_v2 assembly reference. The export includes a loose component, retained in its original position. The footprint above describes the documented chassis.',
         view: { yaw: 2.45, pitch: 0.26, distance: 2.8 },
+        loadTimeoutMs: 45000,
         readyLabel: '3D ready · LazyBot assembly',
         sourceURL: 'https://cad.onshape.com/documents/0ec023d9700593bfeebabdea/w/02e5710fbedd7baee1480c4a/e/63f1a3919addf09c73a6e4d6'
       },
