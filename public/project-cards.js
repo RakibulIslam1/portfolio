@@ -14,13 +14,20 @@ export function projectPicture(project, index, className = '') {
   visual.append(placeholder);
   const src = assetURL(project.image?.src);
   if (src) {
+    // A supplied image is loading, rather than a future layout-preview slot.
+    placeholder.hidden = true;
     const image = document.createElement('img');
     image.src = src;
     image.alt = project.image.alt || project.title;
     image.loading = 'lazy';
     image.decoding = 'async';
     image.addEventListener('load', () => { placeholder.hidden = true; });
-    image.addEventListener('error', () => { image.hidden = true; placeholder.hidden = false; });
+    image.addEventListener('error', () => {
+      image.hidden = true;
+      number.hidden = true;
+      label.textContent = 'IMAGE UNAVAILABLE';
+      placeholder.hidden = false;
+    });
     visual.append(image);
   }
   return visual;
