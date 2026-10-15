@@ -1,5 +1,4 @@
 import { assetURL, projectURL } from './projects-data.js';
-import { createProjectModel } from './project-model.js';
 
 export function projectPicture(project, index, className = '') {
   const visual = document.createElement('div');
@@ -68,10 +67,6 @@ export function renderProjectCards(container, projects, type = 'capsule') {
     copy.append(kicker, heading, description, action);
     link.append(visual, copy);
     item.append(link);
-    if (type === 'capsule') {
-      const model = createProjectModel(project);
-      if (model) item.append(model);
-    }
     container.append(item);
   }
   if (!projects.length) {
