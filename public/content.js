@@ -121,6 +121,40 @@ export const portfolio = {
         { label: 'Motion', value: '6 degrees of freedom' },
         { label: 'Autonomy', value: 'ROS 2' }
       ],
+      specifications: [
+        { heading: 'Compute & perception', facts: [
+          { label: 'Onboard computer', value: 'Raspberry Pi 5' },
+          { label: 'Neural accelerator', value: 'Hailo-8' },
+          { label: 'Detection rate', value: '53.9 Hz · ROS graph, bench' },
+          { label: 'Detection latency', value: '18.0 ms median · bench' }
+        ] },
+        { heading: 'Control & navigation', facts: [
+          { label: 'Flight control loop', value: '500 Hz · bench' },
+          { label: 'Host control', value: '20–50 Hz · bench' },
+          { label: 'Flight-computer link', value: 'MAVLink 2 over USB-C' },
+          { label: 'State estimation', value: 'Right-invariant EKF' }
+        ] },
+        { heading: 'Software & sensing', facts: [
+          { label: 'Autonomy framework', value: 'ROS 2' },
+          { label: 'Velocity input', value: 'Downward-camera optical flow' },
+          { label: 'Tracking', value: 'Detection, coast, geometric anchor' },
+          { label: 'Simulation', value: 'Gazebo · BlueROV2 Heavy stand-in' }
+        ] }
+      ],
+      specificationsNote: 'Rates and latency are reported bench measurements from the Mongla technical site, not underwater performance. In-water validation remains pending.',
+      model: {
+        src: './models/mongla/hull.mgla',
+        poster: './models/mongla/hull-poster.webp',
+        title: 'Mongla · inspect the hull',
+        alt: 'Interactive source CAD of the red Mongla hull, with four tunnel thrusters and one axial nose thruster',
+        note: 'Source CAD reference: five thrusters with passive roll. The seven-thruster, six-DOF project configuration described above is specified separately.',
+        sourceURL: 'https://fh1m.github.io/mongla_ws/#body',
+        measurements: [
+          { label: 'CAD length', value: '702.0 mm' },
+          { label: 'CAD beam', value: '176.1 mm' },
+          { label: 'CAD height', value: '172.1 mm' }
+        ]
+      },
       sections: [{
         heading: 'From sensing to motion',
         flow: [
@@ -130,7 +164,10 @@ export const portfolio = {
         ],
         paragraphs: ['The codebase documents bench and simulation work. In-water validation is still pending.']
       }],
-      links: [{ label: 'Explore the codebase', url: 'https://github.com/RakibulIslam1/mongla_ws' }],
+      links: [
+        { label: 'Explore the codebase', url: 'https://github.com/RakibulIslam1/mongla_ws' },
+        { label: 'Mongla technical site', url: 'https://fh1m.github.io/mongla_ws/' }
+      ],
       repository: 'RakibulIslam1/mongla_ws'
     },
     { slug: 'project-01', title: 'Project 01', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },

@@ -66,6 +66,9 @@ Use this structure for an owner-supplied project, replacing the example strings 
   placeholder: false,
   description: '',         // Longer Overview write-up; newlines are preserved.
   facts: [],               // { label: '', value: '' } — add only supplied facts.
+  specifications: [],      // { heading: '', facts: [{ label: '', value: '' }] }
+  specificationsNote: '',  // State what measurements represent, when relevant.
+  model: null,             // Optional local CAD viewer; see the Mongla entry.
   sections: [],            // { heading: '', paragraphs: [''], flow: [{ label: '', detail: '' }], image: { src: '', alt: '', caption: '' } }
   gallery: [],             // { src: './images/photo.png', alt: '', caption: '' }
   links: [],               // { label: '', url: 'https://...' } — external project resources.
@@ -76,6 +79,18 @@ Use this structure for an owner-supplied project, replacing the example strings 
 Image and gallery paths resolve from the site root at every page depth, including GitHub Pages' `/portfolio/` prefix. Missing cover images preserve the circular placeholder. Optional facts, write-up sections, gallery, and external links appear only when supplied. Cards always navigate to the internal project page; external URLs belong in `links` on that page. Projects appear in array order, and `featured: true` selects the homepage shortlist.
 
 `public/project-cards.js` shares capsule/card media and navigation. `public/project-pages.js` renders the collection and detail content; `public/projects-data.js` validates slugs and resolves URLs. The Node server and static builder both use `scripts/project-pages.mjs` and `scripts/templates/project.html`, so direct visits and refreshes work without SPA routing or a GitHub Pages 404 workaround. No npm dependencies, application database or CMS were added. New entries automatically receive generated pages on the next build/deployment.
+
+### Interactive CAD and technical specifications
+
+Mongla's project page includes twelve sourced readouts across compute/perception, control/navigation, and software/sensing. The [Mongla technical site](https://fh1m.github.io/mongla_ws/) backs the reported bench rates and latency, the ROS 2/compute setup, optical-flow/estimation approach and simulator. Measurements retain their bench context and do not claim underwater validation. Control-board internals remain outside this project write-up.
+
+The owner explicitly retained seven thrusters and six DOF for the project configuration. The source CAD is a separately labelled five-thruster, passive-roll reference; its 702.0 × 176.1 × 172.1 mm dimensions describe that mesh only. Keep this distinction when updating content.
+
+`public/project-model.js` creates a standalone viewer beneath a featured capsule and on the detail page, outside any card link. Drag/arrows orbit; +/- buttons and keys zoom; Rotate/Pause controls optional rotation; Reset restores the camera/assembly; the labelled range separates CAD parts. Normal page scrolling remains available over the model, including touch scrolling. The initial view is stationary. Mesh/renderer loading starts near the viewport; a data-saving connection requires Load 3D model. A missing mesh or unsupported WebGL keeps the poster/source link and offers a retry.
+
+The viewer is a locally adapted, MIT-licensed native WebGL2 module from fh1m/mongla_ws, with the original model and poster hosted alongside it. No npm package, CDN script, third-party iframe, backend or build tool was added. The renderer draws on demand while static, suspends when offscreen/hidden, and responds to live reduced-motion changes. The model is 931,524 bytes and the poster 97,360 bytes. `public/vendor/mongla/README.md` records provenance, original hashes and adaptations; LICENSE.txt retains the upstream copyright/terms. `server.mjs` serves WebP, the binary .mgla container and the license with their proper MIME types; the regular static build copies them without modification.
+
+All editable model labels, geometry notes, asset paths, source link, CAD dimensions and technical readouts stay in `public/content.js`. Only add CAD models compatible with this viewer's MGLA container; other file formats require an explicit implementation decision.
 
 ### Comments, watching and views
 

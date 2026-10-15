@@ -2,6 +2,7 @@ import { portfolio } from './content.js';
 import { visibleProjects, assetURL, externalURL } from './projects-data.js';
 import { renderProjectCards, projectPicture } from './project-cards.js';
 import { setupProjectEngagement } from './project-engagement.js';
+import { createProjectModel } from './project-model.js';
 
 for (const element of document.querySelectorAll('[data-name]')) element.textContent = portfolio.name;
 document.querySelector('[data-brand-first]').textContent = portfolio.brand.first;
@@ -90,6 +91,33 @@ if (document.body.dataset.projectPage === 'collection') {
       overview.append(paragraph(project.description || 'The project write-up will be added here, together with its images and details.'));
       body.append(overview);
     }
+    if (project.specifications?.length) {
+      const specifications = storySection('Technical specifications');
+      const groups = document.createElement('div');
+      groups.className = 'project-specifications';
+      for (const spec of project.specifications) {
+        const group = document.createElement('div');
+        const title = document.createElement('h3');
+        title.textContent = spec.heading;
+        const list = document.createElement('dl');
+        for (const fact of spec.facts || []) {
+          const row = document.createElement('div');
+          const label = document.createElement('dt');
+          label.textContent = fact.label;
+          const value = document.createElement('dd');
+          value.textContent = fact.value;
+          row.append(label, value);
+          list.append(row);
+        }
+        group.append(title, list);
+        groups.append(group);
+      }
+      specifications.append(groups);
+      if (project.specificationsNote) specifications.append(paragraph(project.specificationsNote));
+      body.append(specifications);
+    }
+    const model = createProjectModel(project, 'h2');
+    if (model) body.append(model);
     for (const content of project.sections || []) {
       const section = storySection(content.heading || 'Project details');
       if (content.flow?.length) {
