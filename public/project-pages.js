@@ -1,6 +1,7 @@
 import { portfolio } from './content.js';
 import { visibleProjects, assetURL, externalURL } from './projects-data.js';
 import { renderProjectCards, projectPicture } from './project-cards.js';
+import { setupProjectEngagement } from './project-engagement.js';
 
 for (const element of document.querySelectorAll('[data-name]')) element.textContent = portfolio.name;
 document.querySelector('[data-brand-first]').textContent = portfolio.brand.first;
@@ -68,6 +69,7 @@ if (document.body.dataset.projectPage === 'collection') {
     document.querySelector('[data-project-summary]').textContent = project.summary || '';
     document.querySelector('[data-project-preview]').hidden = !project.placeholder;
     document.querySelector('[data-project-visual]').append(projectPicture(project, index));
+    setupProjectEngagement(project);
 
     const facts = document.querySelector('[data-project-facts]');
     for (const fact of project.facts || []) {
@@ -90,6 +92,18 @@ if (document.body.dataset.projectPage === 'collection') {
     }
     for (const content of project.sections || []) {
       const section = storySection(content.heading || 'Project details');
+      if (content.flow?.length) {
+        const flow = document.createElement('ol');
+        flow.className = 'project-system-flow';
+        for (const step of content.flow) {
+          const item = document.createElement('li');
+          const label = document.createElement('h3');
+          label.textContent = step.label;
+          item.append(label, paragraph(step.detail));
+          flow.append(item);
+        }
+        section.append(flow);
+      }
       for (const text of content.paragraphs || []) section.append(paragraph(text));
       const image = figure(content.image);
       if (image) section.append(image);

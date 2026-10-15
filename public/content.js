@@ -99,10 +99,40 @@ export const portfolio = {
       { event: 'Calibration 2.0', category: 'Line Following Robot', year: '', result: '2nd runner-up' }
     ]
   },
-  // Replace preview entries with real work. featured selects homepage capsules.
+  // Comments use public GitHub issues; posting and watching happen on GitHub.
+  projectEngagement: {
+    commentsRepository: 'RakibulIslam1/portfolio',
+    publicSite: 'https://rakibulislam1.github.io/portfolio/'
+  },
+  // Add real work here. featured selects homepage capsules.
   // Slugs form permanent project URLs. Image paths are relative to public/.
   // Optional details: description, facts, sections, gallery, and links (see README).
   projects: [
+    {
+      slug: 'mongla-auv',
+      title: 'Mongla AUV',
+      category: 'Autonomous underwater vehicle',
+      summary: 'Seven thrusters. Six degrees of freedom. A custom mixer and a system built from the ground up, from the flight computer to a ROS 2 neural-vision stack.',
+      image: { src: './images/Sleek Modular Underwater ROV Render.png', alt: 'Red and metal Mongla AUV vehicle render on black' },
+      featured: true,
+      description: 'Mongla brings the vehicle, control electronics and onboard software together as one AUV. Low-level motion runs on the flight computer; perception and mission execution run in ROS 2. A custom mixer translates movement commands into the seven-thruster configuration.',
+      facts: [
+        { label: 'Propulsion', value: '7 thrusters' },
+        { label: 'Motion', value: '6 degrees of freedom' },
+        { label: 'Autonomy', value: 'ROS 2' }
+      ],
+      sections: [{
+        heading: 'From sensing to motion',
+        flow: [
+          { label: 'Perception', detail: 'Onboard cameras and neural vision, running on a Raspberry Pi 5 with Hailo-8 acceleration.' },
+          { label: 'Autonomy', detail: 'ROS 2 connects perception, state estimation and mission commands.' },
+          { label: 'Vehicle control', detail: 'MAVLink connects the autonomy stack to the flight computer and custom thruster mixer.' }
+        ],
+        paragraphs: ['The codebase documents bench and simulation work. In-water validation is still pending.']
+      }],
+      links: [{ label: 'Explore the codebase', url: 'https://github.com/RakibulIslam1/mongla_ws' }],
+      repository: 'RakibulIslam1/mongla_ws'
+    },
     { slug: 'project-01', title: 'Project 01', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
     { slug: 'project-02', title: 'Project 02', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
     { slug: 'project-03', title: 'Project 03', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true }

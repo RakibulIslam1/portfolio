@@ -13,7 +13,6 @@
 </head>
 <body class="project-page" data-project-page="detail" data-project-slug="{{SLUG}}">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="ambient" aria-hidden="true"><span class="glow glow-one"></span><span class="glow glow-two"></span><span class="glow glow-three"></span></div>
   <header class="site-header">
     <a class="brand" href="../../#home" aria-label="{{NAME}} — Home"><span data-brand-first>{{BRAND_FIRST}}</span><span class="red" data-brand-last>{{BRAND_LAST}}</span></a>
     <nav class="site-navigation" aria-label="Main navigation">
@@ -33,6 +32,12 @@
     <div class="project-detail-body">
       <dl class="project-facts" data-project-facts hidden></dl>
       <div data-project-story></div>
+      <section class="project-engagement" data-project-engagement aria-labelledby="project-comments-title" hidden>
+        <div class="project-engagement-heading"><h2 id="project-comments-title">Comments</h2><a class="project-watch" data-project-watch target="_blank" rel="noopener noreferrer" hidden>Watch on GitHub <span aria-hidden="true">↗</span></a></div>
+        <p class="project-comments-status" data-comments-status role="status">Loading comments…</p>
+        <ul class="project-comments" data-comments-list aria-label="Project comments"></ul>
+        <div class="project-comment-actions"><a class="project-discussion-link" data-comment-link target="_blank" rel="noopener noreferrer">Leave a comment <span aria-hidden="true">↗</span></a><span>Post with your GitHub account.</span></div>
+      </section>
       <div class="project-return"><a class="button button-secondary" href="../"><span aria-hidden="true">←</span> Back to all projects</a></div>
     </div>
     <noscript><p class="project-noscript">Enable JavaScript to load project images and the full write-up. The project collection is available through the button above.</p></noscript>

@@ -16,7 +16,7 @@ Open http://localhost:3000. The server binds to localhost. Use `npm start` witho
 
 Edit `public/content.js` for your name, two-color brand text, achievement counters, skill keywords, CV path, biography, projects, competition results, render images, and email. A valid email activates the contact link. Edit `public/styles.css` for the core design, `public/projects.css` for project layouts, `public/achievements.css` for achievements, and `public/index.html` for homepage sections.
 
-The About biography and education come from the owner's supplied CV. Project descriptions, email, and social profile URLs still await the owner's input. Achievement counters use the owner's previously confirmed values.
+The About biography and education come from the owner's supplied CV. Mongla AUV is the first supplied project; further projects, email, and social profile URLs await the owner's input. Achievement counters use confirmed values; the project total now follows real listed projects.
 
 ## Verify and build
 
@@ -49,9 +49,9 @@ The hero counters show the owner's supplied 20+ projects, 25+ national wins, 7 W
 
 ## Adding projects
 
-The owner requested this page structure on 2026-10-15. The homepage shows one compact capsule per selected project, centered within a 1120px maximum width, with circular images alternating left/right on desktop and above centered copy on phones. The image diameter and capsule corner radius share one size variable so their curves match; desktop circles scale from 128–176px, phone circles use 128px (112px on narrow phones). See all projects opens `/projects/`, a block grid of every listed project. Clicking either a homepage capsule or a collection card opens `/projects/<slug>/`. Every detail page has a Back to all projects button, plus links to the homepage sections.
+The homepage shows one compact capsule per selected project, centered within a 1120px maximum width, with circular images alternating left/right on desktop and above centered copy on phones. Capsules use a fully rounded silver/white outline and transparent fill; circles have plain black backgrounds. Image-right rows have extra leading padding before the copy. Desktop circles scale from 128–176px; phone circles use 128px (112px on narrow phones). Homepage section labels are unnumbered. See all projects opens `/projects/`, a block grid of every listed project. Clicking a capsule or collection card opens `/projects/<slug>/`. Every detail page has a Back to all projects button and links to homepage sections. Dedicated pages use black surfaces, thin borders and a large vehicle render without decorative gradients or shadows.
 
-All project content belongs in the `projects` array in `public/content.js`. Three clearly labelled preview entries currently demonstrate the layout without claiming real project details or assigning existing animation renders to unnamed projects. As soon as a real entry is added, preview entries disappear from the homepage, collection, and generated pages. The hero count excludes previews.
+All project content belongs in the `projects` array in `public/content.js`. Mongla AUV is the first real entry at `/projects/mongla-auv/`. Its seven-thruster/six-DOF/custom-mixer configuration comes from the owner; the brief ROS 2, Raspberry Pi 5/Hailo-8 and MAVLink overview is backed by the linked mongla_ws codebase. Its documented bench/simulation status is preserved without claiming underwater validation. The control board remains reserved for a separate project. Three old preview entries remain in the configuration but are automatically excluded from the homepage, collection and generated routes while real projects exist. The hero project counter shows the real entry count.
 
 Use this structure for an owner-supplied project, replacing the example strings and image path before publishing:
 
@@ -66,15 +66,26 @@ Use this structure for an owner-supplied project, replacing the example strings 
   placeholder: false,
   description: '',         // Longer Overview write-up; newlines are preserved.
   facts: [],               // { label: '', value: '' } — add only supplied facts.
-  sections: [],            // { heading: '', paragraphs: [''], image: { src: '', alt: '', caption: '' } }
+  sections: [],            // { heading: '', paragraphs: [''], flow: [{ label: '', detail: '' }], image: { src: '', alt: '', caption: '' } }
   gallery: [],             // { src: './images/photo.png', alt: '', caption: '' }
-  links: []                // { label: '', url: 'https://...' } — external project resources.
+  links: [],               // { label: '', url: 'https://...' } — external project resources.
+  repository: ''           // GitHub owner/repository for the Watch on GitHub link.
 }
 ```
 
 Image and gallery paths resolve from the site root at every page depth, including GitHub Pages' `/portfolio/` prefix. Missing cover images preserve the circular placeholder. Optional facts, write-up sections, gallery, and external links appear only when supplied. Cards always navigate to the internal project page; external URLs belong in `links` on that page. Projects appear in array order, and `featured: true` selects the homepage shortlist.
 
-`public/project-cards.js` shares capsule/card media and navigation. `public/project-pages.js` renders the collection and detail content; `public/projects-data.js` validates slugs and resolves URLs. The Node server and static builder both use `scripts/project-pages.mjs` and `scripts/templates/project.html`, so direct visits and refreshes work without SPA routing or a GitHub Pages 404 workaround. No dependencies, database, or CMS were added. New project entries automatically receive generated pages on the next build/deployment.
+`public/project-cards.js` shares capsule/card media and navigation. `public/project-pages.js` renders the collection and detail content; `public/projects-data.js` validates slugs and resolves URLs. The Node server and static builder both use `scripts/project-pages.mjs` and `scripts/templates/project.html`, so direct visits and refreshes work without SPA routing or a GitHub Pages 404 workaround. No npm dependencies, application database or CMS were added. New entries automatically receive generated pages on the next build/deployment.
+
+### Comments, watching and views
+
+`public/project-engagement.js` adds these features to real project pages. Configuration stays in `projectEngagement` and each project's `repository` in `public/content.js`. GitHub Pages remains a static host; no secret or write-capable API token is sent to visitors.
+
+- Comments use public issues in `RakibulIslam1/portfolio`. Leave a comment opens GitHub's new-issue form with a `[project-slug] Comment` title; the visitor signs in and submits it there. Keep the bracketed slug in the title so it appears on its project page. A public GitHub search reads the latest ten matching conversations, rendering titles/bodies as plain text, with replies continuing on GitHub. The owner moderates through the normal repository issue controls. Empty, unavailable and rate-limited responses have honest fallback text and working links; comments are never stored only in the visitor's browser. GitHub search indexing may delay new conversations.
+- Watch on GitHub opens the project's code repository. Visitors choose GitHub's native Watch option there; the portfolio never pretends to subscribe them. `repository` should be supplied for each code project.
+- Shared view badges use [Hits](https://github.com/silentsoft/hits) at `https://hits.sh/<canonical-host>/portfolio/projects/<slug>.svg`, counting visits since activation without an invented starting total. The canonical base is `projectEngagement.publicSite`. The badge loads only on that origin, so localhost/preview checks do not inflate totals. It links to counter statistics and falls back to Views unavailable when the service fails. These are public page-load counts, not verified unique people; caching, blockers and the external service affect totals. Keep slugs/base stable to retain history. No count is incremented from homepage or collection cards.
+
+These features depend on GitHub's public REST API and Hits, rather than a new portfolio backend. The complete project write-up and navigation work if either service is blocked. Inline anonymous posting and guaranteed first-party analytics would require a separately approved backend/hosting decision.
 
 `public/hero-motion.js` uses the 13 supplied project renders listed in `content.js`. On reload, all 13 drift at fresh random positions along the portrait's very bottom edge. Positions are sampled freely with a minimum-distance check; there are no rows, columns, or fixed anchors. Floating sizes scale with the number of renders to preserve spacing as assets are added. Varied sizes and gentle drift reduce crowding. They follow staggered curved flights into the heading once, with `create` fading gradually from the first departure through the flight window. Later cycles only hide `create`, scroll the render row right to left inside its exact word box, and restore the text for a 4.2-second rest. Resizing, scrolling back, and changing motion preference never replay the portrait intro. In-memory small textures keep the motion light without changing source images.
 
