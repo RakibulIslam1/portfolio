@@ -31,6 +31,8 @@ Repository: https://github.com/RakibulIslam1/portfolio
 
 Live website: https://rakibulislam1.github.io/portfolio/
 
+Account-root entry: https://rakibulislam1.github.io/ forwards to the portfolio, preserving a section hash and query string. Its minimal source is tracked at hosting/github-root/index.html and published separately in RakibulIslam1/RakibulIslam1.github.io (Pages from main, /). To update that redirect after editing its source, run node scripts/publish-root-redirect.mjs with the owner's GitHub CLI authentication. Normal portfolio changes still deploy only from this repository's main workflow. No portfolio content is duplicated in the redirect repository.
+
 Push commits to `main` to publish updates. `.github/workflows/pages.yml` checks JavaScript, builds `dist/` using Node.js 24, and deploys it through GitHub Pages. Repository Settings → Pages uses GitHub Actions. `dist/` stays ignored; the workflow creates the deployment artifact. All local asset and CV paths are relative, so the site works under `/portfolio/` and at the local server root. Store replacement CVs in `public/files/` and update `cv.url` and `cv.filename` in `public/content.js`. The current document is `./files/CV draft-1.pdf`; spaces are encoded automatically by the browser.
 
 ## Handoff

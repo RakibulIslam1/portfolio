@@ -14,3 +14,4 @@ Read PROJECT_MEMORY.md before making changes.
 - Run npm run check and npm run build after relevant edits. Verify changed server behavior with HTTP requests.
 - Update PROJECT_MEMORY.md with confirmed preferences, decisions, completed work, and remaining work. Never store secrets or credentials.
 - Owner requested GitHub hosting on 2026-10-15. The destination is RakibulIslam1/portfolio with GitHub Pages at https://rakibulislam1.github.io/portfolio/. Pushes to main deploy through .github/workflows/pages.yml. Keep asset paths relative to support this repository subpath. Do not deploy to other providers unless requested.
+- The bare account address https://rakibulislam1.github.io/ also opens the portfolio via a small redirect in RakibulIslam1/RakibulIslam1.github.io. Its source is hosting/github-root/index.html; use scripts/publish-root-redirect.mjs for manual synchronization. Keep the portfolio itself at its established /portfolio/ destination.
