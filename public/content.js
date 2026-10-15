@@ -61,18 +61,42 @@ export const portfolio = {
   },
   email: '',
   cv: { url: './files/CV draft-1.pdf', filename: 'CV draft-1.pdf' },
-  // A short selection from CV draft-1.pdf. The full record stays in the CV.
-  // Team placements are credited to the team.
+  // All Honors & Awards from CV draft-1.pdf, plus the Duburi team result.
+  // The highlighted WRO result is excluded from the six secondary entries.
   achievements: {
     heading: 'Achievements',
     highlights: [
       { event: 'World Robot Olympiad', year: '2025', rank: '6', ordinal: 'th', distinction: 'Full score', team: 'Team LazyGo' },
       { event: 'RoboSub', year: '2026', rank: '8', ordinal: 'th', distinction: '', team: 'BRACU Duburi' }
     ],
-    selected: [
+    wro: [
+      { round: 'Open Championship selection', level: 'National', year: '2025', result: 'Champion', detail: 'Gold medal' },
+      { round: 'National Round', year: '2025', result: 'Champion', detail: 'Gold medal' },
+      { round: 'Regional Round', year: '2025', result: 'Champion', detail: '' },
+      { round: 'International Round', year: '2024', result: '19th worldwide', detail: 'Participant' },
+      { round: 'National Round', year: '2024', result: 'Champion', detail: 'Gold medal' },
+      { round: 'National Round', year: '2023', result: 'Winner', detail: 'Silver medal' }
+    ],
+    otherResults: [
       { event: 'Fibonacci National Round Bangladesh', category: 'Micromouse', year: '2026', result: 'Champion' },
+      { event: 'Fibonacci National Round Bangladesh', category: 'Micromouse', year: '2026', result: '1st runner-up' },
+      { event: 'DRMC Science Carnival', category: 'Drone Race', year: '2026', result: '1st runner-up' },
+      { event: 'Robotronics Fest', category: 'Micromouse', year: '2025', result: 'Runner-up' },
+      { event: 'Robotronics Fest', category: 'Line Following Robot', year: '2025', result: 'Runner-up' },
       { event: '15th DRMC National Science Carnival', category: 'Mini Soccer', year: '2025', result: 'Champion' },
-      { event: '4th International Robotech Olympiad', category: 'Line Following Robot', year: '2024', result: 'Champion' }
+      { event: '15th DRMC National Science Carnival', category: 'Fire Fighter Robot', year: '2025', result: 'Champion' },
+      { event: 'UIU CSE Fest', category: 'Line Following Robot', year: '2025', result: '1st runner-up' },
+      { event: '4th International Robotech Olympiad', category: 'Line Following Robot', year: '2024', result: 'Champion' },
+      { event: 'EWU National RoboFest', category: 'Line Following Robot', year: '2024', result: '1st runner-up' },
+      { event: 'Codeavour Bangladesh', category: '', year: '2024', result: 'Winner' },
+      { event: 'Init 4.0', category: 'Line Following Robot', year: '', result: 'Runner-up' },
+      { event: 'Green University EEE Day', category: 'Line Following Robot', year: '', result: '2nd place' },
+      { event: 'OSCILLON, IEEE AUST Student Branch', category: 'Line Following Robot', year: '', result: '2nd place' },
+      { event: 'Technomize 1.0, KUET', category: 'Line Following Robot', year: '', result: '1st runner-up' },
+      { event: 'Calibration 2.0', category: 'Micromouse', year: '', result: 'Champion' },
+      { event: 'Calibration 2.0', category: 'Micromouse', year: '', result: '1st runner-up' },
+      { event: 'Calibration 2.0', category: 'Line Following Robot', year: '', result: '1st runner-up' },
+      { event: 'Calibration 2.0', category: 'Line Following Robot', year: '', result: '2nd runner-up' }
     ]
   },
   // Replace preview entries with real work. featured selects homepage capsules.

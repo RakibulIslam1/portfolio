@@ -1,4 +1,4 @@
-/* A short selection, with compact international standings and three plain rows. */
+/* Compact international standings, quieter WRO results, and a plain contest list. */
 .achievements { padding-block: clamp(28px, 4vw, 48px); border-top: 1px solid var(--line); }
 .achievement-heading { margin-bottom: 22px; }
 .achievements .section-label { margin-bottom: 12px; }
@@ -15,19 +15,34 @@
 .result-meta, .result-team { margin: 0; font-size: 11px; line-height: 1.8; }
 .result-meta { color: #e3a9b5; }
 .result-team { color: var(--muted); }
-.achievement-selection { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.achievement-subheading { margin: 0 0 14px; color: #c7b9bd; font-size: 13px; font-weight: 500; }
+.wro-record { margin-block: 26px; }
+.wro-results { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.wro-result { display: flex; flex-direction: column; min-width: 0; padding: 14px; border: 1px solid #ffffff16; border-radius: 8px; background: #ffffff02; }
+.wro-meta { margin: 0 0 8px; color: #9c8c91; font-size: 10px; line-height: 1.6; }
+.wro-round { margin: 0 0 16px; color: #d9cdd1; font-size: 12px; line-height: 1.6; font-weight: 400; overflow-wrap: anywhere; }
+.wro-outcome { margin: auto 0 0; color: #dcb1bc; font-size: 12px; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
+.wro-detail { margin: 3px 0 0; color: #9c8c91; font-size: 10px; line-height: 1.6; }
+.other-achievements { margin-top: 28px; }
+.achievement-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 36px; list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
 .award-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 14px; border-bottom: 1px solid #ffffff0f; }
 .award-description { min-width: 0; }
 .award-event { margin: 0 0 3px; font-size: 13px; font-weight: 500; line-height: 1.6; overflow-wrap: anywhere; }
 .award-category { margin: 0; color: #9c8c91; font-size: 11px; line-height: 1.6; }
-.award-result { flex-shrink: 0; color: #e3a9b5; font-size: 12px; }
+.award-result { flex: 0 0 auto; max-width: 100px; color: #e3a9b5; font-size: 12px; }
 .achievement-cv-link { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 10px; color: #d6afb7; font-size: 12px; }
 .achievement-cv-link:hover { color: #ffcbd5; }
+@media (max-width: 1180px) {
+  .wro-results { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 @media (max-width: 640px) {
   .international-results { grid-template-columns: minmax(0, 1fr); margin-bottom: 14px; }
   .international-result, .international-result:first-child { padding: 12px 0; border-right: 0; }
   .international-result:first-child { border-bottom: 1px solid #ffffff0f; }
   .result-event { font-size: 17px; }
+  .wro-results { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .wro-result { padding: 12px; }
+  .achievement-results { grid-template-columns: minmax(0, 1fr); }
   .award-row { gap: 12px; padding-block: 12px; }
   .award-event { font-size: 12px; }
   .award-result { font-size: 11px; }

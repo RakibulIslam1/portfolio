@@ -29,12 +29,26 @@ export function setupAchievementsSection(content, cv) {
     highlights.append(article);
   }
 
-  const list = document.querySelector('[data-achievement-selection]');
+  const wro = document.querySelector('[data-wro-results]');
+  wro.replaceChildren();
+  for (const award of content.wro) {
+    const item = element('li', 'wro-result');
+    const meta = element('p', 'wro-meta');
+    const year = element('time', '', award.year);
+    year.dateTime = award.year;
+    meta.append(year);
+    if (award.level) meta.append(' · ' + award.level);
+    item.append(meta, element('h4', 'wro-round', award.round), element('p', 'wro-outcome', award.result));
+    if (award.detail) item.append(element('p', 'wro-detail', award.detail));
+    wro.append(item);
+  }
+
+  const list = document.querySelector('[data-achievement-results]');
   list.replaceChildren();
-  for (const award of content.selected) {
+  for (const award of content.otherResults) {
     const row = element('li', 'award-row');
     const copy = element('div', 'award-description');
-    copy.append(element('h3', 'award-event', award.event), element('p', 'award-category', award.category + ' · ' + award.year));
+    copy.append(element('h4', 'award-event', award.event), element('p', 'award-category', [award.category, award.year].filter(Boolean).join(' · ')));
     row.append(copy, element('span', 'award-result', award.result));
     list.append(row);
   }
