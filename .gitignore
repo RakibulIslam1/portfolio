@@ -6,3 +6,5 @@ dist/
 *.log
 .DS_Store
 .preview-check/
+source-assets/cad/
+__pycache__/

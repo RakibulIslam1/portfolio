@@ -1,72 +1,91 @@
-# LazyGo / LazyBot CAD display asset
+# LazyGo / LazyBot STEP display asset
 
 Source project: https://github.com/RakibulIslam1/LazyGo_WRO2025
+Repository revision inspected: 643f82a0ae91aaec0642444a58b3d41e497f25aa.
+The upstream MIT notice, copyright (c) 2025 A. N. M. Noor, remains in LICENSE.txt.
 
-Repository revision inspected: `643f82a0ae91aaec0642444a58b3d41e497f25aa`.
-The fork's upstream is A-N-M-Noor/LazyGo_WRO2025. The original MIT notice,
-copyright (c) 2025 A. N. M. Noor, is retained verbatim in LICENSE.txt.
+The owner supplied car_v2.step in public/ and explicitly identified it as the
+intended assembly source. It was moved unchanged to:
 
-The repository's mechanical-design documentation links this public Onshape
-assembly, named `car_v2`:
+    source-assets/cad/lazygo/car_v2.step
 
+Original CAD stays local under Git ignore and outside the static website.
+Source bytes: 74,315,786.
+SHA-256: 88124fd89f39c20d6df4bb7e86434741913098b5df3ebfc7d09eaad65e39b666.
+Header: STEP AP242 Edition 2; Onshape by PTC Inc. 1.222;
+export timestamp 2026-10-15T17:55:10Z.
+
+The owner/repository links this Onshape assembly:
 https://cad.onshape.com/documents/0ec023d9700593bfeebabdea/w/02e5710fbedd7baee1480c4a/e/63f1a3919addf09c73a6e4d6
 
-Public element metadata inspected on 2026-10-15 identifies microversion
-`a76b80ba1e0653316c8c6570`. An anonymous API geometry export returned HTTP 401.
-The viewer asset was therefore prepared from the existing local `car_v2.zip`
-export, containing `car_v2.obj` and `car_v2.mtl`, rather than claiming that a
-fresh API export succeeded. The assembly/export names match; the local export's
-exact relationship to that microversion has not been verified.
+The supplied STEP replaces the earlier independently located Onshape 1.207
+OBJ/MTL archive. It has 1,849 placed instances and 1,631 reusable prototypes.
+The old OBJ's loose component near x=140 mm is absent. Analytic STEP bounds
+are (-46.206063, -79.471297, -12.325006) to
+(58.662616, 122.700787, 135.625804) mm: extents approximately
+104.869 x 202.172 x 147.951 mm. These describe the CAD export, not verified
+physical vehicle measurements. The page's 200 x 100 mm footprint is the team's
+documented chassis design and remains labelled separately.
 
-The original archive and its extracted source files remain unchanged. Their
-SHA-256 hashes are:
+## Offline conversion
 
-- car_v2.zip (35,765,025 bytes): `f1642630783769259ca25a0af3fa577df8e40fbebb97d24ef4f3347bf8627ad0`
-- car_v2.obj (178,049,149 bytes): `33312b2764d8f7de210316e737e7cb452d2a0d8e6a17af8e60ba5657b88a0958`
-- car_v2.mtl (14,621 bytes): `e0d9a134df4e678d3efa2236e3479f57614e7eb106ab7b36d4eebbc050918acf`
+The website still uses its existing native WebGL2 renderer and MGLA v3 format.
+No npm dependency, runtime 3D package, remote viewer or iframe was added.
+Optional authoring tools are Python, cadquery-ocp-novtk 7.9.3.1.1, NumPy, SciPy and
+fast-simplification 0.2.0. They are not needed to serve, check or build the site.
 
-The OBJ declares meters and contains 1,116,086 vertices, 2,142,988 triangles,
-1,852 semantic component groups and 94 diffuse materials. Original bounds are
-(-0.0462061, -0.0794713, -0.012325) to (0.142588, 0.122701, 0.135624) meters.
-The whole export spans 188.7941 x 202.1723 x 147.949 mm. These are CAD-export
-extents including an outlying source component, not a confirmed physical robot
-specification. The base plate's source bounds span 100 x 200 mm.
+1. scripts/export-step-cad.py imports structure, names, face colours and
+   placements into Open CASCADE/XCAF. OCCT model space is explicitly millimeters;
+   the exporter scales both geometry and instance translations to meters.
+   Tessellation uses 0.075 mm linear and 0.25 rad angular deflection parameters.
+   Two under-sampled B-spline surfaces on the shared radial-capacitor prototype
+   are refined by evaluating the original STEP surface inside its existing UV
+   triangles. Shared edge samples preserve trims; near-zero-width UV slivers
+   are removed. Sampled surface deviation is at most 0.0211 mm, and the dome
+   peak matches the STEP surface. No substitute capacitor geometry is created.
+   The temporary GLB intentionally retains source Z-up axes; it is an internal
+   intermediate and must not be treated as conventional Y-up glTF.
+2. scripts/glb-cad-to-obj.py flattens embedded geometry and hierarchical instance
+   matrices into meter/Z-up OBJ/MTL. Reflected transforms reverse winding.
+   All 1,849 placed instances survive. glTF linear colour encoding is undone
+   against the STEP palette, including predefined colours: all 94 exported
+   materials match, with maximum pre-rounding RGB distance about 3.1e-8.
+3. scripts/pack-cad-model.py welds and simplifies within material/component
+   boundaries, protecting source camera, outer shell, LiDAR, servos, base plate
+   front-wheel and radial-capacitor tessellation. Open borders and reverse-wound surface pairs
+   are retained. A 0.05 mm clustering cell reduces microscopic redundant detail.
+   The target triangle count is a budget preference, not a forced deletion rule.
+   One rigid rotation maps (x,y,z) to (x,z,-y), followed by uniform centering and
+   scaling. Coordinates use signed 16-bit quantization; RGB8 stores source colours.
 
-Processing uses `scripts/pack-cad-model.py`, an offline authoring tool requiring
-NumPy and fast-simplification 0.2.0. The website adds no npm package, runtime 3D
-library, remote viewer or iframe. The raw CAD is deliberately not shipped to
-browsers. To regenerate using separately installed offline Python packages:
+With the optional offline packages installed, reproduce the geometry with:
 
-```text
-python scripts/pack-cad-model.py car_v2.obj car_v2.mtl public/models/lazygo/lazybot.mgla --triangles 180000
-```
+    python scripts/export-step-cad.py source-assets/cad/lazygo/car_v2.step .preview-check/lazygo-step/car_v2-step-refined.glb --deflection-mm 0.075 --angle-radians 0.25
+    python scripts/glb-cad-to-obj.py .preview-check/lazygo-step/car_v2-step-refined.glb .preview-check/lazygo-step/car_v2-step-refined.obj --step-palette source-assets/cad/lazygo/car_v2.step
+    python scripts/pack-cad-model.py .preview-check/lazygo-step/car_v2-step-refined.obj .preview-check/lazygo-step/car_v2-step-refined.mtl public/models/lazygo/lazybot-step.mgla --triangles 180000
 
-The packer welds identical positions within each source component/material.
-Redundant microscopic CAD fillets first use a 0.05 mm local vertex-clustering
-cell (maximum clustering displacement 0.0867 mm); quadric-error simplification
-then operates independently per segment with open borders protected. The camera,
-outer shell, LiDAR, servos, base plate and front wheels retain their source
-geometry. The target is a budget preference; it cannot force open-boundary
-removal to meet a triangle count. The final asset contains 237,633 vertices and
-340,345 triangles in 6,460,648 bytes.
-Components that would disappear within a cell keep their original geometry.
-Reverse-wound triangle pairs remain separate for the renderer's backface culling.
-Material regions never mix colors. Twelve spatial/semantic display clusters support the
-existing explosion control. These are viewing aids, not a verified mechanical
-disassembly sequence. Assembled part transforms and source outliers are retained;
-no replacement components are invented. A single rigid axis rotation maps
-source (x, y, z) to viewer (x, z, -y), followed by global centering and uniform
-scaling. Source diffuse Kd colors are rounded to RGB8. Coordinates are quantized
-to signed 16-bit values in the same MGLA v3 format used by the portfolio's
-existing MIT-attributed Mongla renderer. Normals are reconstructed by that
-renderer, and source transparency/specular properties are not represented by
-this format.
+export-step-cad.py optionally accepts --tooling for a separately installed local
+Python package directory. Update the sourceCAD origin record in lazybot-step.json
+and this provenance when regenerating from a different source export.
+Its optional --cache flag reuses a pre-mesh XCAF cache only when the companion
+report matches the original STEP hash.
 
-`lazybot.json` records the final geometry's SHA-256 hash, byte/triangle/vertex
-counts, quantization bound, normalization data, every original diffuse color,
-and source-component/material to display-cluster mappings. It is provenance
-data and is not required by the browser viewer. The packer writes the binary
-atomically and includes the existing parser's required 32-bit index alignment.
+## Published geometry
 
-The local export's CAD detail is a reference. It does not establish the built
-robot's mass, performance, competition result or exact as-built configuration.
+lazybot-step.mgla: 6,211,448 bytes; 228,205 vertices; 327,435 triangles.
+SHA-256: b61c6de790f88febde37b1d3fac5d47adf52253c228020111c2ea832033bf198.
+Twelve display groups support the exploded-view control; these are viewing aids,
+not a verified mechanical parts count or disassembly sequence.
+
+lazybot-step.json records input hashes, palette, source/component mapping,
+normalization, quantization data and the original STEP identity. The browser
+requires only the MGLA file; all source files, GLB/OBJ/MTL intermediates and the
+XCAF cache remain outside public/. Original STEP bytes are unchanged.
+
+All 1,849 instance names and transformed bounds were checked against XCAF;
+maximum bound difference is 0.04594 mm, within the tessellation parameter.
+One microscopic lettering face (about 0.000017 square mm) has no native OCCT
+triangles. It does not remove a placed component; no replacement face is invented.
+
+This is a visual CAD reference. Tessellation/simplification are not dimensional
+inspection, and the mesh establishes no mass, endurance or competition result.

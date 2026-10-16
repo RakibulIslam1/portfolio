@@ -208,11 +208,11 @@ export const portfolio = {
       ],
       specificationsNote: 'Dimensions, turning radius and component choices are documented in the team repository. The international placement is the team result recorded in my CV.',
       model: {
-        src: './models/lazygo/lazybot.mgla',
+        src: './models/lazygo/lazybot-step.mgla',
         poster: './images/Lazy Go Rover Studio Render.png',
         title: 'LazyBot · inspect the assembly',
         alt: 'Interactive CAD assembly of LazyBot with its four-wheel chassis, stacked electronics, LiDAR and camera head',
-        note: 'Onshape car_v2 assembly reference. The export includes a loose component, retained in its original position. The footprint above describes the documented chassis.',
+        note: 'Onshape car_v2 assembly reference. The footprint above describes the team’s documented chassis design; component positions follow the supplied STEP export.',
         view: { yaw: 2.45, pitch: 0.26, distance: 2.8 },
         loadTimeoutMs: 45000,
         readyLabel: '3D ready · LazyBot assembly',

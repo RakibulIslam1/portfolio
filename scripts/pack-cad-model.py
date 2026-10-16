@@ -190,7 +190,7 @@ def main():
         name = group_names[gid].lower()
         lo, hi = group_bounds[gid]
         center = (lo + hi) / 2
-        return (any(label in name for label in ("web cam", "top cover", "rplidar", "main servo"))
+        return (any(label in name for label in ("web cam", "top cover", "rplidar", "main servo", "rad-0.2"))
                 or (hi[1] - lo[1] > .15 and center[2] < 0)
                 or (name == "part 1" and lo[2] < -.01 and hi[2] < .04
                     and center[1] > .04 and np.max(hi - lo) > .04))
@@ -315,7 +315,7 @@ def main():
                            "targetTriangles": args.triangles, "algorithm": "quadric error, agg=7, preserve_border=True; independent material/component segments",
                            "microgeometryCellMillimeters": cluster_cell_meters * 1000,
                            "maximumCellDisplacementMillimeters": cluster_cell_meters * np.sqrt(3) * 1000,
-                           "protectedGeometry": "source camera, outer shell, LiDAR, servos, base plate and front wheels",
+                           "protectedGeometry": "source camera, outer shell, LiDAR, servos, base plate, front wheels and radial capacitors",
                            "allocation": "12 triangle minimum per material/component, then area^0.65 * sourceTriangles^0.2"},
         "displayGroups": [{"id": i, "name": name, "explodeVectorYUp": list(direction)}
                           for i, (name, direction) in enumerate(CLUSTERS)],
