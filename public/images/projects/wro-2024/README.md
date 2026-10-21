@@ -1,6 +1,6 @@
 # wro-2024 image provenance
 
-On 2026-10-21 the owner selected the separately supplied DIY Robotic Rover with Sensor Eyes.png as SMOKI's cover. The repository photographs below remain in the project gallery; the supplied cover is a render, not a physical-build photograph.
+On 2026-10-21 the owner selected the separately supplied DIY Robotic Rover with Sensor Eyes.png as SMOKI's cover. Original repository photographs are retained as source assets, with the top view in the project gallery; the supplied cover is a render, not a physical-build photograph.
 
 Imported 2026-10-21 from https://github.com/RakibulIslam1/wro_2024_MAYERDOA_ROBOTICS, commit `a0e9a7fe3bb8dfd6717a679607b0f3711a1c582e`.
 

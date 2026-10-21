@@ -386,11 +386,8 @@ export const portfolio = {
           'The firmware samples five infrared channels, with left, front and right readings driving the released navigation logic. Diagonal channels remain visible on the sensor screen. The two AS5600 encoders share a fixed device address, so each uses its own 400 kHz I²C bus.'
         ] },
         { heading: 'Search, save and run', paragraphs: [
-          'Flood-fill search builds the maze representation. Stored routes can be checked and run again, while settings, maze data and routes persist in EEPROM emulation. The linked repository documents earlier hardware generations as well; the firmware and physical-build photograph presented here are V4.'
+          'Flood-fill search builds the maze representation. Stored routes can be checked and run again, while settings, maze data and routes persist in EEPROM emulation. The linked repository documents earlier hardware generations as well; the firmware documented here is V4.'
         ] }
-      ],
-      gallery: [
-        { src: './images/projects/indur/v4.jpeg', alt: 'The physical Indur V4 micromouse with its OLED, three buttons and blue chassis', caption: 'Physical Indur V4 build · photograph from the project repository.' }
       ],
       links: [
         { label: 'Source repository & build history', url: 'https://github.com/RakibulIslam1/indur' },
@@ -438,7 +435,6 @@ export const portfolio = {
         ] }
       ],
       gallery: [
-        { src: './images/projects/wro-2024/front.jpg', alt: 'Front view of the physical MAYERDOA Robotics SMOKI competition vehicle', caption: 'Physical build · front view from the WRO 2024 repository.' },
         { src: './images/projects/wro-2024/top.jpg', alt: 'Top view of SMOKI showing the mounted computer, electronics and LEGO chassis', caption: 'Physical build · top view from the WRO 2024 repository.' }
       ],
       links: [

@@ -10,7 +10,7 @@
 .project-capsule:hover { border-color: #f1f1f5; }
 .project-capsule .project-card-copy { padding: 8px 32px 8px 0; }
 .project-picture { position: relative; isolation: isolate; display: grid; place-items: center; justify-self: center; width: min(100%, 236px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; border: 1px solid #ffffff26; background: #000; }
-.project-picture img { grid-area: 1 / 1; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.project-picture img { grid-area: 1 / 1; position: relative; width: 100%; height: 100%; object-fit: contain; padding: 8%; }
 .project-diagram { width: 70%; padding-block: 16px; text-align: center; }
 .project-diagram-label { margin: 0 0 9px; color: #b5b5bd; font: 8px/1.4 ui-monospace, monospace; letter-spacing: .7px; text-transform: uppercase; }
 .project-diagram ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
@@ -64,7 +64,7 @@
 .project-detail-summary { color: var(--muted); font-size: 16px; line-height: 1.85; margin: 0; overflow-wrap: anywhere; }
 .project-detail-visual { display: grid; place-items: center; min-width: 0; aspect-ratio: 1.18; padding: 16px; border: 1px solid #ffffff26; border-radius: 12px; background: #000; }
 .project-detail-visual .project-picture { width: 100%; border: 0; border-radius: 0; background: #000; aspect-ratio: 1.18; }
-.project-detail-visual .project-picture img { object-fit: contain; }
+.project-detail-visual .project-picture img { padding: 0; }
 .project-detail-visual.project-detail-visual-diagram { aspect-ratio: auto; }
 .project-detail-visual.project-detail-visual-diagram .project-picture { aspect-ratio: auto; }
 .project-detail-visual .project-diagram { width: min(70%, 300px); }
