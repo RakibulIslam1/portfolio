@@ -355,7 +355,7 @@ export const portfolio = {
       title: 'Indur V4',
       category: 'Micromouse robotics',
       summary: 'An ESP32-S3 micromouse combining infrared wall sensing, magnetic wheel feedback and flood-fill maze navigation.',
-      image: { src: './images/projects/indur/v4.jpeg', alt: 'The physical Indur V4 micromouse with its OLED, three buttons and blue chassis' },
+      image: { src: './images/Compact Teal Wheeled Robotics Platform.png', alt: 'Owner-selected teal wheeled robotics platform render representing Indur' },
       featured: false,
       description: 'Indur V4 brings maze sensing, wheel feedback and route storage onto a compact two-wheel robot. Its firmware searches a grid with flood fill, saves maze and route information, and supports route verification and subsequent runs. An onboard OLED and three buttons provide setup and sensor inspection without a connected computer.',
       facts: [
@@ -386,8 +386,11 @@ export const portfolio = {
           'The firmware samples five infrared channels, with left, front and right readings driving the released navigation logic. Diagonal channels remain visible on the sensor screen. The two AS5600 encoders share a fixed device address, so each uses its own 400 kHz I²C bus.'
         ] },
         { heading: 'Search, save and run', paragraphs: [
-          'Flood-fill search builds the maze representation. Stored routes can be checked and run again, while settings, maze data and routes persist in EEPROM emulation. The linked repository documents earlier hardware generations as well; the firmware and photograph presented here are V4.'
+          'Flood-fill search builds the maze representation. Stored routes can be checked and run again, while settings, maze data and routes persist in EEPROM emulation. The linked repository documents earlier hardware generations as well; the firmware and physical-build photograph presented here are V4.'
         ] }
+      ],
+      gallery: [
+        { src: './images/projects/indur/v4.jpeg', alt: 'The physical Indur V4 micromouse with its OLED, three buttons and blue chassis', caption: 'Physical Indur V4 build · photograph from the project repository.' }
       ],
       links: [
         { label: 'Source repository & build history', url: 'https://github.com/RakibulIslam1/indur' },
@@ -400,7 +403,7 @@ export const portfolio = {
       title: 'SMOKI · WRO 2024',
       category: 'Autonomous vehicle · MAYERDOA Robotics',
       summary: 'A WRO Future Engineers vehicle using camera navigation, ultrasonic sensing and servo steering on a modular LEGO chassis.',
-      image: { src: './images/projects/wro-2024/front.jpg', alt: 'Front view of the MAYERDOA Robotics SMOKI competition vehicle' },
+      image: { src: './images/DIY Robotic Rover with Sensor Eyes.png', alt: 'Owner-selected DIY robotic rover render with sensor eyes representing SMOKI' },
       featured: false,
       description: 'SMOKI combines Raspberry Pi vision processing with ESP32 motor, steering and sensor control for the WRO Future Engineers challenge. A LEGO Technic chassis, custom electronics and printed mounts make the vehicle serviceable as its camera, sensors and software evolve.',
       facts: [
@@ -435,6 +438,7 @@ export const portfolio = {
         ] }
       ],
       gallery: [
+        { src: './images/projects/wro-2024/front.jpg', alt: 'Front view of the physical MAYERDOA Robotics SMOKI competition vehicle', caption: 'Physical build · front view from the WRO 2024 repository.' },
         { src: './images/projects/wro-2024/top.jpg', alt: 'Top view of SMOKI showing the mounted computer, electronics and LEGO chassis', caption: 'Physical build · top view from the WRO 2024 repository.' }
       ],
       links: [
