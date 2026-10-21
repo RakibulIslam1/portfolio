@@ -2,6 +2,8 @@ import { cp, mkdir, lstat, rm, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { visibleProjects, renderProjectPage } from './project-pages.mjs';
+import { versionAssets } from './version-assets.mjs';
+import { portfolio } from '../public/content.js';
 
 const projects = visibleProjects();
 const projectRoot = path.resolve(fileURLToPath(new URL('../', import.meta.url)));
@@ -18,4 +20,5 @@ for (const project of projects) {
   await mkdir(directory, { recursive: true });
   await writeFile(path.join(directory, 'index.html'), await renderProjectPage(project));
 }
-console.log('Static portfolio and ' + projects.length + ' project pages built in dist/');
+const revision = await versionAssets(output, { publicSite: portfolio.projectEngagement.publicSite });
+console.log('Static portfolio and ' + projects.length + ' project pages built in dist/ · assets ' + revision);

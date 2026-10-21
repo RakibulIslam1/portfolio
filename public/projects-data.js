@@ -2,6 +2,7 @@ import { portfolio } from './content.js';
 
 // Resolve from this module, not the current page, to support nested Pages URLs.
 export const siteRoot = new URL('./', import.meta.url);
+const release = new URL(import.meta.url).searchParams.get('v');
 
 export function validateProjects(projects = portfolio.projects) {
   const slugs = new Set();
@@ -22,7 +23,9 @@ export function visibleProjects() {
 }
 
 export function projectURL(project) {
-  return new URL('projects/' + project.slug + '/', siteRoot).href;
+  const url = new URL('projects/' + project.slug + '/', siteRoot);
+  if (release) url.searchParams.set('v', release);
+  return url.href;
 }
 
 export function assetURL(source) {

@@ -37,6 +37,8 @@ Push commits to `main` to publish updates. `.github/workflows/pages.yml` checks 
 
 ## Handoff
 
+GitHub Pages serves HTML, scripts and styles with a ten-minute browser cache. `scripts/version-assets.mjs` adds a deterministic release query to generated CSS/module URLs, including nested/lazy imports and internal page navigation. A code or style change therefore uses fresh cache keys throughout the browser module graph. The `portfolio-release` head metadata identifies that asset release; canonical links retain the permanent unversioned page addresses. Public source files stay readable and local development stays unversioned. Image/model bytes and URLs are unchanged. Run `npm test` for dependency-change, import/navigation and Windows/Linux line-ending checks; Pages runs these before building.
+
 Read `AGENTS.md` and `PROJECT_MEMORY.md` before editing. Update project memory when requirements or significant decisions change. The owner authorized GitHub repository creation and GitHub Pages publication on 2026-10-15.
 
 Hero portrait: images/S.png is the supplied original; public/images/S.png is the served copy. Blending is controlled by .hero-portrait and .hero-art in public/styles.css.
