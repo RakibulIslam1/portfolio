@@ -50,6 +50,7 @@
 .collection-card { display: flex; flex-direction: column; height: 100%; padding: clamp(20px, 2.5vw, 30px); border: 1px solid #ffffff1c; border-radius: 24px; background: linear-gradient(155deg, #28101694, #111011 50%); transition: border-color .25s, transform .25s; }
 .collection-card:hover { border-color: #ff596a70; transform: translateY(-3px); }
 .collection-card .project-picture { width: min(100%, 208px); margin: 8px auto 28px; flex-shrink: 0; }
+.collection-card .project-picture-cover img { position: absolute; inset: 0; object-fit: cover; padding: 0; border-radius: 50%; }
 .collection-card .project-diagram { width: 64%; padding-block: 0; }
 .collection-card .project-diagram ol { gap: 9px; }
 .collection-card .project-diagram li { padding-block: 4px; }

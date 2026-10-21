@@ -448,7 +448,7 @@ export const portfolio = {
       title: 'WebController',
       category: 'ESP32 browser control',
       summary: 'A configurable browser controller with ten buttons, two sliders and two multitouch joysticks, served directly by an ESP32.',
-      image: { src: './images/projects/web-controller/controller.jpeg', alt: 'Actual ESP32 WebSocket Controller interface with ten buttons, two sliders and two joysticks' },
+      image: { src: './images/projects/web-controller/controller.jpeg', alt: 'Actual ESP32 WebSocket Controller interface with ten buttons, two sliders and two joysticks', fit: 'cover' },
       featured: false,
       description: 'WebController turns a phone or computer browser into an input panel for an ESP32 project. The Arduino library serves its controller and settings pages from SPIFFS, receives input over WebSocket, and exposes button, slider and joystick values to the device sketch.',
       facts: [
@@ -493,7 +493,7 @@ export const portfolio = {
       title: 'ScholarsPilot',
       category: 'Android · student money management',
       summary: 'A student money companion connecting reviewed financial records, Bangla and English voice entry, and a practical monthly plan.',
-      image: { src: './images/projects/scholarspilot/app-icon.png', alt: 'ScholarsPilot app icon' },
+      image: { src: './images/projects/scholarspilot/app-icon.png', alt: 'ScholarsPilot app icon', fit: 'cover' },
       detailImage: { src: './images/projects/scholarspilot/cover.png', alt: 'ScholarsPilot product overview with actual Android pilot screens and private financial values hidden' },
       featured: false,
       description: 'ScholarsPilot helps students turn scattered financial records into a clearer daily plan. Supported messages, optional wallet alerts and manual entries feed a reviewed record of spending. Students can add a reason by text or voice, review AI wording and category suggestions, and plan around education, housing and everyday costs.',

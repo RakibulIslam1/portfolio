@@ -72,7 +72,7 @@ The owner added eight collection-only projects on 2026-10-21. All eight have `fe
 
 Write-ups distinguish configured values from measured results and shipped features from queued work. SROT's eight-output firmware is separate from Mongla's seven-thruster configuration; RPM closed-loop control is disabled by default. Bondor's LoRa link is receive-only and its mission editor is queued. WRO 2024 keeps the CV-backed nineteenth-place team result and named team credits; uncertain Pi generation/battery claims are omitted. ScholarsPilot uses only its public showcase assets and documentation, links to the pilot release, and keeps private implementation private. Public Watch uses its showcase repository.
 
-Photos, OLED framebuffer captures and app artwork are sourced from the repositories, with pinned provenance, hashes and original license/rights notices in `public/images/projects/<project>/`. SROT repositories have no published images; their covers are simple HTML diagrams of documented system paths. No invented board photos or new 3D models were added.
+Photos, OLED framebuffer captures and app artwork are sourced from the repositories, with pinned provenance, hashes and original license/rights notices in `public/images/projects/<project>/`. SROT repositories have no published images; their covers are simple HTML diagrams of documented system paths. No invented board photos or new 3D models were added. Only ScholarsPilot and WebController use `image.fit: 'cover'` to fill their round collection thumbnails, as specifically requested; this does not change other covers or detail-page images.
 
 Use this structure for an owner-supplied project, replacing the example strings and image path before publishing:
 
