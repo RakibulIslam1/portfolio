@@ -3,6 +3,27 @@ import { assetURL, projectURL } from './projects-data.js';
 export function projectPicture(project, index, className = '') {
   const visual = document.createElement('div');
   visual.className = 'project-picture ' + className;
+  if (!assetURL(project.image?.src) && project.visual?.nodes?.length) {
+    visual.classList.add('project-picture-diagram');
+    const diagram = document.createElement('div');
+    diagram.className = 'project-diagram';
+    const caption = document.createElement('p');
+    caption.className = 'project-diagram-label';
+    caption.textContent = project.visual.label || project.title;
+    const nodes = document.createElement('ol');
+    for (const node of project.visual.nodes) {
+      const item = document.createElement('li');
+      const label = document.createElement('strong');
+      label.textContent = node.label;
+      const detail = document.createElement('span');
+      detail.textContent = node.detail || '';
+      item.append(label, detail);
+      nodes.append(item);
+    }
+    diagram.append(caption, nodes);
+    visual.append(diagram);
+    return visual;
+  }
   const placeholder = document.createElement('div');
   placeholder.className = 'project-picture-placeholder';
   placeholder.setAttribute('aria-hidden', 'true');

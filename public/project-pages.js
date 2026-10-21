@@ -14,6 +14,7 @@ function figure(item) {
   if (!src) return null;
   const element = document.createElement('figure');
   element.className = 'project-figure';
+  if (item.presentation === 'screen') element.classList.add('project-figure-screen');
   const image = document.createElement('img');
   image.src = src;
   image.alt = item.alt || '';
@@ -69,7 +70,10 @@ if (document.body.dataset.projectPage === 'collection') {
     document.querySelector('[data-project-category]').textContent = project.placeholder ? 'LAYOUT PREVIEW' : project.category || 'PROJECT';
     document.querySelector('[data-project-summary]').textContent = project.summary || '';
     document.querySelector('[data-project-preview]').hidden = !project.placeholder;
-    document.querySelector('[data-project-visual]').append(projectPicture(project, index));
+    const visual = document.querySelector('[data-project-visual]');
+    const picture = projectPicture({ ...project, image: project.detailImage || project.image }, index);
+    visual.classList.toggle('project-detail-visual-diagram', picture.classList.contains('project-picture-diagram'));
+    visual.append(picture);
     setupProjectEngagement(project);
 
     const facts = document.querySelector('[data-project-facts]');

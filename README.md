@@ -51,9 +51,26 @@ The hero counters show the owner's supplied 20+ projects, 25+ national wins, 7 W
 
 The homepage shows one compact capsule per selected project, centered within a 1120px maximum width. All circular images sit on the left on desktop/tablets and above centered copy on narrow phones. Capsules use a fully rounded silver/white outline and transparent fill; circles have plain black backgrounds. Desktop circles scale from 128–176px; phone circles use 128px (112px on narrow phones). Homepage section labels are unnumbered. See all projects opens `/projects/`, a block grid of every listed project. Clicking a capsule or collection card opens `/projects/<slug>/`. Every detail page has a Back to all projects button and links to homepage sections. Dedicated pages use black surfaces, thin borders and a large vehicle render without decorative gradients or shadows.
 
-All project content belongs in the `projects` array in `public/content.js`. Mongla AUV is the first real entry at `/projects/mongla-auv/`. Its seven-thruster/six-DOF/custom-mixer configuration comes from the owner; the brief ROS 2, Raspberry Pi 5/Hailo-8 and MAVLink overview is backed by the linked mongla_ws codebase. Its documented bench/simulation status is preserved without claiming underwater validation. The control board remains reserved for a separate project. Three old preview entries remain in the configuration but are automatically excluded from the homepage, collection and generated routes while real projects exist. The hero project counter shows the real entry count.
+All project content belongs in the `projects` array in `public/content.js`. Mongla AUV is the first real entry at `/projects/mongla-auv/`. Its seven-thruster/six-DOF/custom-mixer configuration comes from the owner; the brief ROS 2, Raspberry Pi 5/Hailo-8 and MAVLink overview is backed by the linked mongla_ws codebase. Its documented bench/simulation status is preserved without claiming underwater validation. Control-board internals have their own SROT project page. Three old preview entries remain in the configuration but are automatically excluded from the homepage, collection and generated routes while real projects exist. The hero project counter shows the real entry count.
 
 LazyGo is the second real, featured project at `/projects/lazygo-wro-2025/`, with the supplied rover studio render as its cover. Its technical description, fifteen component/design readouts and two build photos come from [LazyGo_WRO2025](https://github.com/RakibulIslam1/LazyGo_WRO2025), inspected at commit `643f82a0ae91aaec0642444a58b3d41e497f25aa`. The page distinguishes servo-driven Ackermann steering from the mechanical rear differential and credits Rakibul's hardware/CAD work alongside the team's electronics and ROS work. The sixth-place WRO 2025 standing comes from the owner's CV; the repository's 2022 third-place introduction describes an older result. Photograph provenance and the upstream MIT notice are in `public/images/projects/lazygo/`.
+
+The owner added eight collection-only projects on 2026-10-21. All eight have `featured: false`; homepage pins remain Mongla and LazyGo until the owner selects otherwise. There are ten real project pages in total.
+
+| Project | Slug | Public source |
+| --- | --- | --- |
+| SROT Control Board | `srot-control-board` | [srot-control-board](https://github.com/RakibulIslam1/srot-control-board) |
+| IndurUI | `indur-ui` | [indur-ui](https://github.com/RakibulIslam1/indur-ui) |
+| Indur V4 | `indur-micromouse` | [indur](https://github.com/RakibulIslam1/indur) |
+| SMOKI · WRO 2024 | `wro-2024-mayerdoa-robotics` | [wro_2024_MAYERDOA_ROBOTICS](https://github.com/RakibulIslam1/wro_2024_MAYERDOA_ROBOTICS) |
+| WebController | `web-controller` | [WebController](https://github.com/RakibulIslam1/WebController) |
+| ScholarsPilot | `scholarspilot` | [Public showcase](https://github.com/RakibulIslam1/scholarspilot-downloads) |
+| SROT ESC Flasher | `srot-esc-flasher` | [srot-esc-flasher](https://github.com/RakibulIslam1/srot-esc-flasher) |
+| SROT Ground Station / Bondor | `srot-ground-station` | [srot-ground-station](https://github.com/RakibulIslam1/srot-ground-station) |
+
+Write-ups distinguish configured values from measured results and shipped features from queued work. SROT's eight-output firmware is separate from Mongla's seven-thruster configuration; RPM closed-loop control is disabled by default. Bondor's LoRa link is receive-only and its mission editor is queued. WRO 2024 keeps the CV-backed nineteenth-place team result and named team credits; uncertain Pi generation/battery claims are omitted. ScholarsPilot uses only its public showcase assets and documentation, links to the pilot release, and keeps private implementation private. Public Watch uses its showcase repository.
+
+Photos, OLED framebuffer captures and app artwork are sourced from the repositories, with pinned provenance, hashes and original license/rights notices in `public/images/projects/<project>/`. SROT repositories have no published images; their covers are simple HTML diagrams of documented system paths. No invented board photos or new 3D models were added.
 
 Use this structure for an owner-supplied project, replacing the example strings and image path before publishing:
 
@@ -64,6 +81,8 @@ Use this structure for an owner-supplied project, replacing the example strings 
   category: '',
   summary: '',             // Short description on the homepage, collection, and detail hero.
   image: { src: './images/your-project.png', alt: '' },
+  detailImage: null,       // Optional { src, alt } to use a different detail-page hero image.
+  visual: null,            // Optional image-free diagram: { label: '', nodes: [{ label: '', detail: '' }] }.
   featured: true,          // false lists it only in the full collection.
   placeholder: false,
   description: '',         // Longer Overview write-up; newlines are preserved.
@@ -72,7 +91,7 @@ Use this structure for an owner-supplied project, replacing the example strings 
   specificationsNote: '',  // State what measurements represent, when relevant.
   model: null,             // Optional local CAD viewer; see the Mongla entry.
   sections: [],            // { heading: '', paragraphs: [''], flow: [{ label: '', detail: '' }], image: { src: '', alt: '', caption: '' } }
-  gallery: [],             // { src: './images/photo.png', alt: '', caption: '' }
+  gallery: [],             // { src: './images/photo.png', alt: '', caption: '', presentation: 'screen' } — screen is optional for portrait captures.
   links: [],               // { label: '', url: 'https://...' } — external project resources.
   repository: ''           // GitHub owner/repository for the Watch on GitHub link.
 }
