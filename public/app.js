@@ -60,7 +60,9 @@ if (portfolio.cv.url) {
   } catch { /* Keep the link unavailable until a valid CV path is supplied. */ }
 }
 
-renderProjectCards(document.querySelector('#projects'), visibleProjects().filter(project => project.featured));
+const featuredProjects = visibleProjects().filter(project => project.featured);
+featuredProjects.sort((a, b) => (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) - (b.featuredOrder ?? Number.MAX_SAFE_INTEGER));
+renderProjectCards(document.querySelector('#projects'), featuredProjects);
 if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(portfolio.email)) {
   const contact = document.querySelector('#contact-link');
   contact.href = 'mailto:' + portfolio.email;

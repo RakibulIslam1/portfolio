@@ -4,6 +4,7 @@ export function projectPicture(project, index, className = '') {
   const visual = document.createElement('div');
   visual.className = 'project-picture ' + className;
   if (project.image?.fit === 'cover') visual.classList.add('project-picture-cover');
+  if (project.image?.homepageFit === 'cover') visual.classList.add('project-picture-home-cover');
   if (!assetURL(project.image?.src) && project.visual?.nodes?.length) {
     visual.classList.add('project-picture-diagram');
     const diagram = document.createElement('div');

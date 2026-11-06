@@ -115,6 +115,7 @@ export const portfolio = {
       summary: 'Seven thrusters. Six degrees of freedom. A custom mixer and a system built from the ground up, from the flight computer to a ROS 2 neural-vision stack.',
       image: { src: './images/Sleek Modular Underwater ROV Render.png', alt: 'Red and metal Mongla AUV vehicle render on black' },
       featured: true,
+      featuredOrder: 1,
       description: 'Mongla brings the vehicle, control electronics and onboard software together as one AUV. Low-level motion runs on the flight computer; perception and mission execution run in ROS 2. A custom mixer translates movement commands into the seven-thruster configuration.',
       facts: [
         { label: 'Propulsion', value: '7 thrusters' },
@@ -177,6 +178,7 @@ export const portfolio = {
       summary: 'An autonomous WRO rover combining Ackermann steering, LiDAR navigation and a panning camera to complete laps, avoid coloured obstacles and park.',
       image: { src: './images/Lazy Go Rover Studio Render.png', alt: 'Team LazyGo rover studio render with its panning camera, LiDAR and layered chassis' },
       featured: true,
+      featuredOrder: 2,
       description: 'LazyBot is Team LazyGo’s autonomous rover for the World Robot Olympiad 2025 Future Engineers category. My work focused on hardware and CAD design, alongside the team’s embedded-electronics and ROS development. The vehicle combines a compact three-deck chassis with range sensing, colour confirmation and odometry for the open and obstacle rounds.',
       facts: [
         { label: 'My contribution', value: 'Hardware & CAD design' },
@@ -252,19 +254,15 @@ export const portfolio = {
       ],
       repository: 'RakibulIslam1/LazyGo_WRO2025'
     },
-    // Collection-only additions. The owner will choose future homepage pins.
+    // Additional projects. featured selects pins; featuredOrder sets homepage order.
     {
       slug: 'srot-control-board',
       title: 'SROT Control Board',
       category: 'Embedded flight control',
       summary: 'Hengla flight-control firmware: a 500 Hz ESP32 controller, a Pico 2 thruster co-processor, and onboard attitude and depth control.',
-      image: null,
-      visual: { label: 'Hengla · control path', nodes: [
-        { label: 'ESP32', detail: '500 Hz controller' },
-        { label: 'Pico 2', detail: 'DShot + RPM telemetry' },
-        { label: '8 thrusters', detail: 'Configured outputs' }
-      ] },
-      featured: false,
+      image: { src: './images/SPOT 3D-Printed Gadget Render.png', alt: 'Owner-supplied SROT controller enclosure render with display, cooling fan and red wiring' },
+      featured: true,
+      featuredOrder: 4,
       description: 'The SROT control-board project handles the low-level work between a companion computer and an underwater vehicle: attitude, depth, movement mixing, braking and failsafes. Hengla runs on the ESP32 while a dedicated RP2350 backend handles thruster signalling and RPM feedback. This page covers the controller firmware separately from the Mongla vehicle.',
       facts: [
         { label: 'Control loop', value: '500 Hz configured' },
@@ -357,6 +355,7 @@ export const portfolio = {
       summary: 'An ESP32-S3 micromouse combining infrared wall sensing, magnetic wheel feedback and flood-fill maze navigation.',
       image: { src: './images/Compact Teal Wheeled Robotics Platform.png', alt: 'Owner-selected teal wheeled robotics platform render representing Indur' },
       featured: true,
+      featuredOrder: 3,
       description: 'Indur V4 brings maze sensing, wheel feedback and route storage onto a compact two-wheel robot. Its firmware searches a grid with flood fill, saves maze and route information, and supports route verification and subsequent runs. An onboard OLED and three buttons provide setup and sensor inspection without a connected computer.',
       facts: [
         { label: 'Controller', value: 'ESP32-S3' },
@@ -493,9 +492,10 @@ export const portfolio = {
       title: 'ScholarsPilot',
       category: 'Android · student money management',
       summary: 'A student money companion connecting reviewed financial records, Bangla and English voice entry, and a practical monthly plan.',
-      image: { src: './images/projects/scholarspilot/app-icon.png', alt: 'ScholarsPilot app icon', fit: 'cover' },
+      image: { src: './images/projects/scholarspilot/app-icon.png', alt: 'ScholarsPilot app icon', fit: 'cover', homepageFit: 'cover' },
       detailImage: { src: './images/projects/scholarspilot/cover.png', alt: 'ScholarsPilot product overview with actual Android pilot screens and private financial values hidden' },
       featured: true,
+      featuredOrder: 5,
       description: 'ScholarsPilot helps students turn scattered financial records into a clearer daily plan. Supported messages, optional wallet alerts and manual entries feed a reviewed record of spending. Students can add a reason by text or voice, review AI wording and category suggestions, and plan around education, housing and everyday costs.',
       facts: [
         { label: 'Release', value: 'Android pilot · 1.0.0 build 9' },
@@ -542,12 +542,7 @@ export const portfolio = {
       title: 'SROT ESC Flasher',
       category: 'Embedded firmware tooling',
       summary: 'An ESP32 BLHeli 4-way interface for reading, configuring and flashing Bluejay onto up to four BLHeli_S ESCs.',
-      image: null,
-      visual: { label: 'ESC firmware path', nodes: [
-        { label: 'Browser', detail: 'ESC Configurator' },
-        { label: 'ESP32', detail: 'BLHeli 4-way interface' },
-        { label: '4 ESCs', detail: 'BLHeli_S / Bluejay' }
-      ] },
+      image: { src: './images/projects/artwork/esc-flasher.svg', alt: 'Concept illustration of a flashing chip, lightning bolt and four electrical contacts' },
       featured: false,
       description: 'This tool prepares compatible ESCs for the SROT thruster system. An ESP32 sits between the browser-based ESC Configurator and the ESC signal wires, providing the BLHeli 4-way interface needed to inspect settings and write Bluejay firmware.',
       facts: [
@@ -589,12 +584,7 @@ export const portfolio = {
       title: 'SROT Ground Station',
       category: 'Desktop robotics software',
       summary: 'Bondor: a desktop ground station for SROT telemetry, vehicle setup and control tuning, with an ESP32-C3 LoRa receiver.',
-      image: null,
-      visual: { label: 'LoRa telemetry · receive only', nodes: [
-        { label: 'SROT', detail: 'Vehicle telemetry' },
-        { label: 'LoRa bridge', detail: 'ESP32-C3 + SX127x' },
-        { label: 'Bondor', detail: 'Desktop ground station' }
-      ] },
+      image: { src: './images/projects/artwork/ground-station.svg', alt: 'Concept illustration of a desktop telemetry console and radio link' },
       featured: false,
       description: 'Bondor is the desktop side of the SROT system: live vehicle readings, piloting controls, parameter editing and tuning tools in one Electron application. The repository also contains the ESP32-C3 LoRa-to-MAVLink bridge for receiving vehicle telemetry.',
       facts: [
@@ -638,12 +628,7 @@ export const portfolio = {
       title: 'Duburi Simulator',
       category: 'AUV simulation · Gazebo / ArduSub',
       summary: 'An underwater mission lab with Gazebo physics, ArduSub software-in-the-loop, camera streams and a browser-based operator console.',
-      image: null,
-      visual: { label: 'Simulation loop', nodes: [
-        { label: 'Gazebo', detail: 'World, vehicle and sensors' },
-        { label: 'ArduSub SITL', detail: 'Autopilot in the loop' },
-        { label: 'ROS 2', detail: 'Mission and operator tools' }
-      ] },
+      image: { src: './images/projects/artwork/auv-simulator.svg', alt: 'Concept illustration of a virtual underwater robot inside a wireframe test pool' },
       featured: false,
       description: 'This workspace recreates the vehicle interfaces an AUV mission stack needs before a pool session: physics, MAVLink feedback, cameras and controllable scenarios. Gazebo and ArduSub run alongside ROS 2, while an operator lab supports rehearsal, inspection and dataset recording. It is the simulator companion to the separate Duburi software workspace.',
       facts: [
@@ -748,12 +733,7 @@ export const portfolio = {
       title: 'Energy AI',
       category: 'Machine learning · electricity forecasting',
       summary: 'A 30-day electricity usage and cost dashboard, combining a Random Forest model with forecast weather and a generated outlook.',
-      image: null,
-      visual: { label: 'Forecast pipeline', nodes: [
-        { label: 'Weather', detail: '16 forecast days' },
-        { label: 'Random Forest', detail: 'Weather + calendar inputs' },
-        { label: '30-day outlook', detail: 'Includes 14 generated days' }
-      ] },
+      image: { src: './images/projects/artwork/energy-forecast.svg', alt: 'Concept illustration combining a weather cloud, sunlight and an electricity bolt; not forecast data' },
       featured: false,
       description: 'Energy AI explores how weather and calendar patterns relate to daily electricity use. A training script combines historical consumption with weather data; the Streamlit dashboard loads the saved model, estimates daily energy demand and presents a projected cost alongside temperature in an interactive Plotly chart.',
       facts: [
