@@ -186,6 +186,7 @@
   .project-comment-archive { margin-left: 0; }
 }
 @media (max-width: 360px) {
+  .collection-card .project-picture-diagram { width: min(100%, 208px); }
   .model-heading, .model-toolbar { padding-inline: 16px; }
   .model-assembly { padding-inline: 16px; gap: 8px; }
   .model-help, .model-note, .model-measurements, .model-status, .project-model .model-note { margin-inline: 16px; }

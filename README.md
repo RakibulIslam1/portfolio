@@ -57,7 +57,7 @@ All project content belongs in the `projects` array in `public/content.js`. Mong
 
 LazyGo is the second real, featured project at `/projects/lazygo-wro-2025/`, with the supplied rover studio render as its cover. Its technical description, fifteen component/design readouts and two build photos come from [LazyGo_WRO2025](https://github.com/RakibulIslam1/LazyGo_WRO2025), inspected at commit `643f82a0ae91aaec0642444a58b3d41e497f25aa`. The page distinguishes servo-driven Ackermann steering from the mechanical rear differential and credits Rakibul's hardware/CAD work alongside the team's electronics and ROS work. The sixth-place WRO 2025 standing comes from the owner's CV; the repository's 2022 third-place introduction describes an older result. Photograph provenance and the upstream MIT notice are in `public/images/projects/lazygo/`.
 
-The owner added eight collection-only projects on 2026-10-21. All eight have `featured: false`; homepage pins remain Mongla and LazyGo until the owner selects otherwise. There are ten real project pages in total.
+The owner added eight projects on 2026-10-21 and three more on 2026-11-06. There are thirteen real project pages. Homepage pins are Mongla, LazyGo, Indur V4 and ScholarsPilot, in array order; all others remain collection-only. The last two pins were explicitly selected on 2026-11-06.
 
 | Project | Slug | Public source |
 | --- | --- | --- |
@@ -69,10 +69,15 @@ The owner added eight collection-only projects on 2026-10-21. All eight have `fe
 | ScholarsPilot | `scholarspilot` | [Public showcase](https://github.com/RakibulIslam1/scholarspilot-downloads) |
 | SROT ESC Flasher | `srot-esc-flasher` | [srot-esc-flasher](https://github.com/RakibulIslam1/srot-esc-flasher) |
 | SROT Ground Station / Bondor | `srot-ground-station` | [srot-ground-station](https://github.com/RakibulIslam1/srot-ground-station) |
+| Duburi Simulator | `duburi-simulator` | [duburi-sim_ws](https://github.com/RakibulIslam1/duburi-sim_ws) |
+| Duburi ROS 2 Stack | `duburi-ros2-stack` | [duburi_ws](https://github.com/RakibulIslam1/duburi_ws) |
+| Energy AI | `electricity-forecast` | [Electricity forecasting repository](https://github.com/RakibulIslam1/Live-AI-predictions-driven-by-meteorological-forecasting-and-predictive-extrapolation.) |
 
 Write-ups distinguish configured values from measured results and shipped features from queued work. SROT's eight-output firmware is separate from Mongla's seven-thruster configuration; RPM closed-loop control is disabled by default. Bondor's LoRa link is receive-only and its mission editor is queued. WRO 2024 keeps the CV-backed nineteenth-place team result and named team credits; uncertain Pi generation/battery claims are omitted. ScholarsPilot uses only its public showcase assets and documentation, links to the pilot release, and keeps private implementation private. Public Watch uses its showcase repository.
 
 Photos, OLED framebuffer captures and app artwork are sourced from the repositories, with pinned provenance, hashes and original license/rights notices in `public/images/projects/<project>/`. SROT repositories have no published images; their covers are simple HTML diagrams of documented system paths. No invented board photos or new 3D models were added. Only ScholarsPilot and WebController use `image.fit: 'cover'` to fill their round collection thumbnails, as specifically requested; this does not change other covers or detail-page images.
+
+The November additions keep source-backed scope explicit. Duburi ROS 2 Stack covers the team's software workspace, with an unchanged repository render and pool photo; its MIT notice and pinned image hashes are under `public/images/projects/duburi/`. The simulator is a fork of a generated upstream mirror and uses a BlueROV2 Heavy proxy, not the seven-thruster Mongla hull. Both preserve upstream/team credits. Energy AI is a Streamlit/Random Forest prototype: 16 weather-service days plus 14 generated days, a flat demonstration cost rate, and no claimed held-out accuracy or confirmed public demo. The simulator and forecasting project use labelled HTML system diagrams because their repositories contain no suitable screenshots. No model pickle, personal electricity records or simulator runtime was imported.
 
 Use this structure for an owner-supplied project, replacing the example strings and image path before publishing:
 

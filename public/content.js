@@ -356,7 +356,7 @@ export const portfolio = {
       category: 'Micromouse robotics',
       summary: 'An ESP32-S3 micromouse combining infrared wall sensing, magnetic wheel feedback and flood-fill maze navigation.',
       image: { src: './images/Compact Teal Wheeled Robotics Platform.png', alt: 'Owner-selected teal wheeled robotics platform render representing Indur' },
-      featured: false,
+      featured: true,
       description: 'Indur V4 brings maze sensing, wheel feedback and route storage onto a compact two-wheel robot. Its firmware searches a grid with flood fill, saves maze and route information, and supports route verification and subsequent runs. An onboard OLED and three buttons provide setup and sensor inspection without a connected computer.',
       facts: [
         { label: 'Controller', value: 'ESP32-S3' },
@@ -495,7 +495,7 @@ export const portfolio = {
       summary: 'A student money companion connecting reviewed financial records, Bangla and English voice entry, and a practical monthly plan.',
       image: { src: './images/projects/scholarspilot/app-icon.png', alt: 'ScholarsPilot app icon', fit: 'cover' },
       detailImage: { src: './images/projects/scholarspilot/cover.png', alt: 'ScholarsPilot product overview with actual Android pilot screens and private financial values hidden' },
-      featured: false,
+      featured: true,
       description: 'ScholarsPilot helps students turn scattered financial records into a clearer daily plan. Supported messages, optional wallet alerts and manual entries feed a reviewed record of spending. Students can add a reason by text or voice, review AI wording and category suggestions, and plan around education, housing and everyday costs.',
       facts: [
         { label: 'Release', value: 'Android pilot · 1.0.0 build 9' },
@@ -632,6 +632,168 @@ export const portfolio = {
         { label: 'Bondor application documentation', url: 'https://github.com/RakibulIslam1/srot-ground-station/blob/1adc14c8037ec6821fb279b1abb5a23ff0e571a8/bondor/README.md' }
       ],
       repository: 'RakibulIslam1/srot-ground-station'
+    },
+    {
+      slug: 'duburi-simulator',
+      title: 'Duburi Simulator',
+      category: 'AUV simulation · Gazebo / ArduSub',
+      summary: 'An underwater mission lab with Gazebo physics, ArduSub software-in-the-loop, camera streams and a browser-based operator console.',
+      image: null,
+      visual: { label: 'Simulation loop', nodes: [
+        { label: 'Gazebo', detail: 'World, vehicle and sensors' },
+        { label: 'ArduSub SITL', detail: 'Autopilot in the loop' },
+        { label: 'ROS 2', detail: 'Mission and operator tools' }
+      ] },
+      featured: false,
+      description: 'This workspace recreates the vehicle interfaces an AUV mission stack needs before a pool session: physics, MAVLink feedback, cameras and controllable scenarios. Gazebo and ArduSub run alongside ROS 2, while an operator lab supports rehearsal, inspection and dataset recording. It is the simulator companion to the separate Duburi software workspace.',
+      facts: [
+        { label: 'Simulator', value: 'Gazebo Harmonic' },
+        { label: 'Autopilot', value: 'ArduSub SITL' },
+        { label: 'Integration', value: 'ROS 2 Humble' }
+      ],
+      specifications: [
+        { heading: 'Vehicle & world', facts: [
+          { label: 'Reference vehicle', value: 'BlueROV2 Heavy proxy · 8 thrusters' },
+          { label: 'Vehicle interface', value: 'Six DOF · ArduPilot JSON FDM' },
+          { label: 'Committed courses', value: '13 · pool, SAUVC and RoboSub scenarios' }
+        ] },
+        { heading: 'Simulated sensing', facts: [
+          { label: 'Cameras', value: 'Forward and bottom · 640 × 480' },
+          { label: 'Velocity sensing', value: 'Native four-beam simulated DVL' },
+          { label: 'Inspection reference', value: 'Gazebo ground truth' }
+        ] },
+        { heading: 'Operator lab', facts: [
+          { label: 'Interface', value: 'FastAPI + React' },
+          { label: 'Controls', value: 'Teleoperation, courses and runtime props' },
+          { label: 'Recording', value: 'Camera datasets and ZIP export' }
+        ] }
+      ],
+      specificationsNote: 'These describe simulation facilities. The eight-thruster proxy is not the owner-specified seven-thruster Mongla hull, and simulated behaviour does not establish real underwater performance.',
+      sections: [
+        { heading: 'Rehearse, inspect, record', flow: [
+          { label: 'Rehearse', detail: 'Start an isolated task or a larger course while preserving the interfaces used by the autonomy stack.' },
+          { label: 'Inspect', detail: 'Watch camera feeds and compare estimated state with simulated ground truth.' },
+          { label: 'Record', detail: 'Collect frames, labels and clip metadata for later perception work.' }
+        ], paragraphs: [
+          'Separate autonomy, ground-control and lab connections keep the operator tools from competing for one MAVLink endpoint. The lab binds locally by default. Sensor effects, configurable current and fault injection support controlled experiments without presenting those experiments as pool validation.'
+        ] },
+        { heading: 'Source and current scope', paragraphs: [
+          'The linked repository is Rakibul’s fork of fh1m/duburi-sim_ws, a generated mirror of the canonical fh1m/duburi_ws/sim workspace. Upstream development credit is retained with Fahim Faisal; the vehicle and world assets have their own upstream attribution.',
+          'The current simulator uses the BlueROV2 Heavy proxy. Detector weights and class configuration are external, so a successful simulator launch alone does not verify perception. Hydrodynamic checks address simulation consistency, with real-hull fidelity still requiring separate validation.'
+        ] }
+      ],
+      links: [
+        { label: 'Simulator repository', url: 'https://github.com/RakibulIslam1/duburi-sim_ws' },
+        { label: 'Launch configuration', url: 'https://github.com/RakibulIslam1/duburi-sim_ws/blob/f836cf73d64e94b5533a92309b80c11890f2017e/src/duburi_sim_bringup/launch/sim.launch.py' },
+        { label: 'Canonical upstream workspace', url: 'https://github.com/fh1m/duburi_ws/tree/main/sim' },
+        { label: 'Upstream asset attribution', url: 'https://github.com/RakibulIslam1/duburi-sim_ws/blob/f836cf73d64e94b5533a92309b80c11890f2017e/src/duburi_sim_description/ATTRIBUTION.md' }
+      ],
+      repository: 'RakibulIslam1/duburi-sim_ws'
+    },
+    {
+      slug: 'duburi-ros2-stack',
+      title: 'Duburi ROS 2 Stack',
+      category: 'AUV autonomy · control / mission / vision',
+      summary: 'A ROS 2 workspace connecting Python missions, vehicle feedback and vision-guided commands to ArduSub through MAVLink.',
+      image: { src: './images/projects/duburi/vehicle.webp', alt: 'Repository render of the Duburi 4.5 team test vehicle' },
+      featured: false,
+      description: 'The Duburi workspace brings vehicle control, sensing and perception behind one ROS 2 action interface. A single manager owns the MAVLink connection; reusable Python commands and finite-state missions handle movement, target alignment and payload tasks. The software is documented in the context of BRAC University Duburi’s AUV platforms.',
+      facts: [
+        { label: 'Framework', value: 'ROS 2 Humble' },
+        { label: 'Workspace', value: '6 ROS packages' },
+        { label: 'Vehicle integration', value: 'ArduSub / MAVLink' }
+      ],
+      specifications: [
+        { heading: 'Control interface', facts: [
+          { label: 'Action surface', value: '/duburi/move' },
+          { label: 'Mission tools', value: 'Python client, CLI and mission runner' },
+          { label: 'Flight control', value: 'Pixhawk / ArduSub 4.x' }
+        ] },
+        { heading: 'Perception & planning', facts: [
+          { label: 'Detection', value: 'YOLO11 support · configurable trackers' },
+          { label: 'Camera paths', value: 'Forward and downward' },
+          { label: 'Mission structure', value: 'Reactive scripts and YASMIN state machines' }
+        ] },
+        { heading: 'Feedback & actuation', facts: [
+          { label: 'Heading source', value: 'BNO085 integration' },
+          { label: 'Distance feedback', value: 'Optional Nortek Nucleus 1000 DVL' },
+          { label: 'Payload interface', value: 'ESP32 serial integration' }
+        ] }
+      ],
+      sections: [
+        { heading: 'One command path', paragraphs: [
+          'Missions share the same navigation commands instead of opening independent flight-controller connections. Timed movement remains available; heading feedback and optional DVL distance commands add sensor-aware control above ArduSub’s inner stabilization and depth loops.'
+        ] },
+        { heading: 'Vision in the mission loop', paragraphs: [
+          'Alignment and movement commands consume target detections, with bounded searches and recovery when a target disappears. Forward and downward camera pipelines support task-specific perception. Competition weights are device-local rather than a complete model bundle included with a fresh clone.'
+        ] },
+        { heading: 'Platform context and credit', paragraphs: [
+          'The repository calls its codebase Mongla while retaining the duburi_ws workspace and /duburi namespace for Duburi test vehicles. This entry describes that software stack, separately from the seven-thruster Mongla AUV vehicle elsewhere in the portfolio. The documented Duburi reference vehicles use eight-thruster configurations.',
+          'Team platform context: BRAC University Duburi. The repository’s MIT notice credits the Mongla project and Muhammad Fahim Faisal. Documentation describes simulator and pool workflows; it does not establish validation of every mission. Inter-vehicle communication, parts of the second-vehicle path and some competition-model work remain pending.'
+        ] }
+      ],
+      gallery: [
+        { src: './images/projects/duburi/pool-dual-auvs.jpg', alt: 'Duburi team AUV platforms photographed together in a pool', caption: 'Team test platforms · repository pool photograph with its original watermark retained.' }
+      ],
+      links: [
+        { label: 'Source repository', url: 'https://github.com/RakibulIslam1/duburi_ws' },
+        { label: 'Action contract', url: 'https://github.com/RakibulIslam1/duburi_ws/blob/c0fd8421b149d4f4d2aa6142071892915af9c125/src/duburi_interfaces/action/Move.action' },
+        { label: 'Development status', url: 'https://github.com/RakibulIslam1/duburi_ws/blob/c0fd8421b149d4f4d2aa6142071892915af9c125/.claude/context/development-board.md' },
+        { label: 'MIT license and credit', url: 'https://github.com/RakibulIslam1/duburi_ws/blob/c0fd8421b149d4f4d2aa6142071892915af9c125/LICENSE' }
+      ],
+      repository: 'RakibulIslam1/duburi_ws'
+    },
+    {
+      slug: 'electricity-forecast',
+      title: 'Energy AI',
+      category: 'Machine learning · electricity forecasting',
+      summary: 'A 30-day electricity usage and cost dashboard, combining a Random Forest model with forecast weather and a generated outlook.',
+      image: null,
+      visual: { label: 'Forecast pipeline', nodes: [
+        { label: 'Weather', detail: '16 forecast days' },
+        { label: 'Random Forest', detail: 'Weather + calendar inputs' },
+        { label: '30-day outlook', detail: 'Includes 14 generated days' }
+      ] },
+      featured: false,
+      description: 'Energy AI explores how weather and calendar patterns relate to daily electricity use. A training script combines historical consumption with weather data; the Streamlit dashboard loads the saved model, estimates daily energy demand and presents a projected cost alongside temperature in an interactive Plotly chart.',
+      facts: [
+        { label: 'Model', value: 'Random Forest' },
+        { label: 'Dashboard', value: 'Streamlit / Plotly' },
+        { label: 'Outlook', value: '30 days · prototype' }
+      ],
+      specifications: [
+        { heading: 'Training', facts: [
+          { label: 'Estimator', value: '100-tree RandomForestRegressor' },
+          { label: 'Inputs', value: 'Temperature, humidity, month and weekday' },
+          { label: 'Training data', value: 'Historical electricity use joined with weather' }
+        ] },
+        { heading: 'Weather outlook', facts: [
+          { label: 'Weather source', value: 'Open-Meteo · Dhaka coordinates' },
+          { label: 'Forecast window', value: '16 days, aggregated from hourly data' },
+          { label: 'Extended window', value: '14 generated days around the final forecast' }
+        ] },
+        { heading: 'Dashboard outputs', facts: [
+          { label: 'Energy estimate', value: 'Daily kWh and 30-day total' },
+          { label: 'Cost assumption', value: 'Flat BDT 10 per kWh' },
+          { label: 'Inspection', value: 'Hover chart and daily data table' }
+        ] }
+      ],
+      specificationsNote: 'The 30-day view is not 30 days of weather-service forecasts: the last 14 days use generated variation. Costs use a demonstration rate, not a verified electricity tariff or utility bill.',
+      sections: [
+        { heading: 'Train separately, predict in the dashboard', paragraphs: [
+          'Training filters historical usage records, joins matching weather dates and fits the forest using four input features. The saved model is loaded by the dashboard, so interactive use runs inference rather than retraining. Weather responses are cached for an hour.'
+        ] },
+        { heading: 'Reading the estimate', paragraphs: [
+          'The interface presents projected usage, estimated cost and average temperature, with an inspectable day-by-day table. The source extends its 16-day weather response using random variation around the final day to complete the month-long view. These extended values are a scenario assumption rather than independently forecast weather.',
+          'The repository does not report a held-out accuracy metric or provide a confirmed public app URL. This page therefore presents the implementation as a forecasting prototype, with source and training details available below.'
+        ] }
+      ],
+      links: [
+        { label: 'Source repository', url: 'https://github.com/RakibulIslam1/Live-AI-predictions-driven-by-meteorological-forecasting-and-predictive-extrapolation.' },
+        { label: 'Dashboard implementation', url: 'https://github.com/RakibulIslam1/Live-AI-predictions-driven-by-meteorological-forecasting-and-predictive-extrapolation./blob/35dde0dd5ca9972e0a9f8e1a0a831bec1cd6cea7/app_predict.py' },
+        { label: 'Model training', url: 'https://github.com/RakibulIslam1/Live-AI-predictions-driven-by-meteorological-forecasting-and-predictive-extrapolation./blob/35dde0dd5ca9972e0a9f8e1a0a831bec1cd6cea7/predict_train.py' }
+      ],
+      repository: 'RakibulIslam1/Live-AI-predictions-driven-by-meteorological-forecasting-and-predictive-extrapolation.'
     },
     { slug: 'project-01', title: 'Project 01', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
     { slug: 'project-02', title: 'Project 02', category: 'Layout preview', summary: 'Project images and a short introduction will be added here.', image: null, featured: true, placeholder: true },
